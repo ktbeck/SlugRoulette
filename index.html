@@ -3,20 +3,19 @@
 {{block head}}
 <script src="{{=URL('static', 'js/vue.js')}}"></script>
 <script>
-  var posts_url = "{{=URL('api', 'get_posts', user_signature=True, hash_vars=False)}}";
-  var add_post_url = "{{=URL('api', 'add_post', user_signature=True)}}";
-  var toggle_post_url = "{{=URL('api', 'toggle_post', user_signature=True)}}";
-  var edit_post_url = "{{=URL('api', 'edit_post', user_signature=True)}}";
-  var del_post_url = "{{=URL('api', 'del_post', user_signature=True)}}";
+    var add_post_url = "{{=URL('api', 'add_post', user_signature=True)}}";
+    var posts_url = "{{=URL('api', 'get_posts')}}";
+    var del_post_url = "{{=URL('api', 'del_post', user_signature=True)}}";
+    var toggle_post_url = "{{=URL('api', 'toggle_post', user_signature=True)}}";
+    var edit_post_url = "{{=URL('api', 'edit_post', user_signature=True)}}";
 </script>
 {{end}}
 
-<div class="main_content" >
+<div class="main_content">
 
-	<input id = "txtEmail" placeholder="username">
-	<input id = "txtPassword" placeholder="password">
-	<button id = "btnLogin"> login </button>
-	
+    <div id="vue-div" class="display:none">
+    </div>
+
 </div>
 
 <script src="{{=URL('static', 'js/default_index.js')}}"></script>

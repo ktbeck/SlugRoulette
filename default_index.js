@@ -1,29 +1,42 @@
-(function() {
+// This is the js for the default/index.html view.
 
-	const config ={
+var app = function() {
 
-		apiKey: "AIzaSyBzcBFPL6xIacLGi9h0l5NpiNnP04Jzrbs",
-		authDomain: "slug-roulette.firebaseapp.com",
-		databaseURL: "https://slug-roulette.firebaseio.com",
-		storageBucket: "slug-roulette.appspot.com",
-	
-	};
-	firebase.initalizeApp(config);
-	
-	const txtEmail    = document.getELementById('txtEmail');
-	const txtPassword = document.getElementById('txtPassword');
-	const btnLogin    = document.getElementById('btnLogin');
-	const btnSignUp   = document.getElementById('btnSignUp');
-	const btnLogout   = document.getElementById('btnLogout');
+    var self = {};
+    Vue.config.silent = false; // show all warnings
 
-	btnLogin.addEventListener('click', e=> {
+    // Extends an array
+    self.extend = function(a, b) {
+        for (var i = 0; i < b.length; i++) {
+            a.push(b[i]);
+        }
+    };
 
-		const email = txtEmail.value;
-		const pass  = txtPassword.value;
-		const auth  = firebase.auth();
-		alert('a');
-		const promise = auth.signInWithEmailAndPassword(email, password);
-		promise.catch(e => console.log(e.message));
-	});
-}());
+    var enumerate = function(v) { var k=0; return v.map(function(e) {e._idx = k++;});};
+
+    // Complete as needed.
+    self.vue = new Vue({
+        el: "#vue-div",
+        delimiters: ['${', '}'],
+        unsafeDelimiters: ['!{', '}'],
+        data: {
+        },
+        methods: {
+        }
+
+
+    });
+
+    self.get_posts();
+    $("#vue-div").show();
+    return self;
+};
+
+var APP = null;
+
+// This will make everything accessible from the js console;
+// for instance, self.x above would be accessible as APP.x
+jQuery(function(){APP = app();});
+
+
 
