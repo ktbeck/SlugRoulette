@@ -1,11 +1,8 @@
 # Here go your api methods.
 
 def add_textBox():
-    trys = []
-    trys.append('new')
-    trys.append('one')
     p = db.textBox.insert(
-            chat = trys,
+            chat = [],
             Title = request.vars.Title
             )
     p2 = db.textBox(p)
@@ -29,5 +26,9 @@ def edit_textBox():
     chat =  db(db.textBox.id == request.vars.chat_id).select().first()
     temp = chat.chat
     temp.append(request.vars.NEW)
-    chat.update_record(Title = 's', chat = temp)
+    chat.update_record(chat = temp)
+    return "ok"
+
+def del_textBox():
+    db(db.textBox.id == request.vars.chat_id).delete()
     return "ok"

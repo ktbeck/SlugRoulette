@@ -24,7 +24,7 @@ var app = function() {
 				Title: self.vue.newTitle
 
 			}, function(data){
-				console.log(data);
+				
 				self.vue.newTitle = null;
 				self.getChat();
 			});
@@ -55,6 +55,17 @@ var app = function() {
 
 	};
 
+	self.delChat = function(chat_id){
+		console.log("deleting a chat");
+		$.post(del_box, {
+
+				chat_id: chat_id	
+
+			}, function (){
+				self.getChat();
+			});
+	};
+
 	// Complete as needed.
 	self.vue = new Vue({
         	el: "#vue-div",
@@ -74,7 +85,8 @@ var app = function() {
 		
 			makeNewChat: self.makeNewChat,
 			getChat:     self.getChat,
-			editChat:    self.editChat
+			editChat:    self.editChat,
+			delChat:  self.delChat
 
         	}
 
