@@ -18,14 +18,15 @@ def get_textBox():
     for r in db().select(db.textBox.ALL):
         t = dict(
                 Title = r.Title,
-                chat = r.chat
+                chat = r.chat,
+                id = r.id
         )
         chats.append(t)
     return response.json(dict(chats=chats))
 
 
 def edit_textBox():
-    chat =  db(db.textBox.id == 70).select().first()
+    chat =  db(db.textBox.id == request.vars.chat_id).select().first()
     temp = chat.chat
     temp.append(request.vars.NEW)
     chat.update_record(Title = 's', chat = temp)
