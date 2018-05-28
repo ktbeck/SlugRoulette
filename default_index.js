@@ -23,7 +23,8 @@ var app = function() {
 			{
 				Title: self.vue.newTitle
 
-			}, function(){
+			}, function(data){
+				console.log(data);
 				self.vue.newTitle = null;
 				self.getChat();
 			});

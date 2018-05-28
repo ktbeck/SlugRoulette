@@ -13,8 +13,8 @@ def get_user_email():
     return auth.user.email if auth.user is not None else None
 
 db.define_table('textBox',
-                Field('chat'),
-                Field('Title')
-                )
+        Field('Title'),
+        Field('chat','list:string', default=[])
+        )
 
-
+db.textBox.id.readable = True

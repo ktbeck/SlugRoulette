@@ -26,12 +26,13 @@
 			<!-- displaying the message for the chat box -->
 			<!-- DOES NOT DISPLAY       FOR LOOP DOES NOT WORK -->
 			<div v-for="line in chat.chat">
-					adasd<br>
+				${line}<br>
 			</div>
 
 			<!-- the sending part of the chat box -->
-			<button v-on:click="console.log(chat.chat);"> Send </button>
+			<button v-on:click="console.log(chat.id);"> Send </button>
 			<textarea type="text" placeholder="Send" v-model="newChatting"></textarea>
+
 		</div>
 
 	</div>
