@@ -9,6 +9,7 @@ Current Verison 1.0
 PROBLEM:
 
   (SOLVED) id of textBox is always null. As a result, I can only edit one textBox right now. 
+  
   (SOLVED) Currently, the array 'chat' CANNOT be displayed. As a result, I cannot work on the edit chat too. Someone fix please. 
   
 --------------------------------------------------- JOBS ---------------------------------------------------------------------------------
