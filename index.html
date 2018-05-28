@@ -19,18 +19,17 @@
 
 
 		<!-- code to display a list of chat boxes -->
-		<br><br>Chats Active<br><br><br>
+		<br><br>Chats Active<br><br>
 		<div v-for="chat in chats">
-			${chat.Title}
+			<b>${chat.Title}</b>
 
 			<!-- displaying the message for the chat box -->
-			<!-- DOES NOT DISPLAY       FOR LOOP DOES NOT WORK -->
 			<div v-for="line in chat.chat">
 				${line}<br>
 			</div>
 
 			<!-- the sending part of the chat box -->
-			<button v-on:click="console.log(chat.id);"> Send </button>
+			<button v-on:click="editChat(chat.id);"> Send </button>
 			<textarea type="text" placeholder="Send" v-model="newChatting"></textarea>
 
 		</div>
