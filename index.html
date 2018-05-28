@@ -3,18 +3,38 @@
 {{block head}}
 <script src="{{=URL('static', 'js/vue.js')}}"></script>
 <script>
-    var add_post_url = "{{=URL('api', 'add_post', user_signature=True)}}";
-    var posts_url = "{{=URL('api', 'get_posts')}}";
-    var del_post_url = "{{=URL('api', 'del_post', user_signature=True)}}";
-    var toggle_post_url = "{{=URL('api', 'toggle_post', user_signature=True)}}";
-    var edit_post_url = "{{=URL('api', 'edit_post', user_signature=True)}}";
+	var new_box  = "{{=URL('api', 'add_textBox', user_signature=True)}}";
+	var edit_box = "{{=URL('api', 'edit_textBox', user_signature=True)}}";
+	var get_box  = "{{=URL('api', 'get_textBox', user_signature=True)}}";
 </script>
 {{end}}
 
 <div class="main_content">
 
-    <div id="vue-div" class="display:none">
-    </div>
+	<div id="vue-div" class="display:none">
+		
+		<!-- code used to make a new chat room-->
+		<button v-on:click="makeNewChat();">  Add </button>
+		<textarea type="text" placeholder="Title" v-model="newTitle"></textarea>
+
+
+		<!-- code to display a list of chat boxes -->
+		<br><br>Chats Active<br><br><br>
+		<div v-for="chat in chats">
+			${chat.Title}
+
+			<!-- displaying the message for the chat box -->
+			<!-- DOES NOT DISPLAY       FOR LOOP DOES NOT WORK -->
+			<div v-for="line in chat.chat">
+					adasd<br>
+			</div>
+
+			<!-- the sending part of the chat box -->
+			<button v-on:click="console.log(chat.chat);"> Send </button>
+			<textarea type="text" placeholder="Send" v-model="newChatting"></textarea>
+		</div>
+
+	</div>
 
 </div>
 
