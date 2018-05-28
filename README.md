@@ -16,7 +16,7 @@ PROBLEM:
   (SOLVED) Currently, the array 'chat' CANNOT be displayed. As a result, I cannot work on the edit chat too. Someone fix please. 
   
 --------------------------------------------------- JOBS --------------------------------------------------------------------------------
-  Frank: UI looks like complete shit right now. You will need to change myapp.css, layout.html, and index.html to improve upon the website design.
+  Frank: UI looks like complete shit right now. You will need to change myapp.css, layout.html, and index.html to improve upon the website design. I want the page to just be a list of chats titles with buttons that you can click to join them. When you click, that chat box appears and the list of titles disappear. From there you can participate in chat or leave by pressing a button. 
   
   Shreya: Look into how to refresh the page realtime. Probably some sort of threading but since threading does not exist in js, you will have to look for alternatives. Also, you can design the logo as I am too lazy to
   
