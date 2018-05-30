@@ -26,7 +26,6 @@ var app = function() {
 			}, function(data){
 				
 				self.vue.newTitle = null;
-				self.getChat();
 			});
 	};
    
@@ -36,6 +35,10 @@ var app = function() {
 		$.getJSON(get_box, {}, function(data){
 				self.vue.chats = data.chats;
 				console.log(self.vue.chats);
+				setTimeout(function(){
+					self.getChat();
+				}, 500);
+
 
 			});
 
@@ -48,7 +51,6 @@ var app = function() {
 				chat_id: chat_id,
 				NEW: self.vue.newChatting
 			}, function(){
-				self.getChat();
 				self.vue.newChatting = null;
 			
 			});
@@ -62,7 +64,6 @@ var app = function() {
 				chat_id: chat_id	
 
 			}, function (){
-				self.getChat();
 			});
 	};
 
