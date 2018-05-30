@@ -8,7 +8,10 @@ IF YOU ARE GOING TO MAKE ACCOUNT, PLEASE PUT THE ACCOUNT INFORMATION HERE. DO NO
   Add button creates a new chat and anyone including people that are logged off can chat. The chat is a type in the tables.py called textBox and my current idea for storing the text is using an array. The 'chat' Field is an Array and any new line that someone sends into the chat will be stored as an new index in the array. The Chat as of now CANNOT update its text UNLESS the send button is clicked OR the page is refreshed. 
   
 (version 1.1)                                                                                                                             
-  Delete button added and delete function added to api.py and default_index.js. Chats can now be deleted
+  Delete button added and delete function added to api.py and default_index.js. Chats can now be deleted.
+
+(version 1.2)                                                                                                                             
+  Now the chat will list the user that typed the text.
 
 PROBLEM:
 
