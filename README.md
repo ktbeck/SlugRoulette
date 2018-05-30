@@ -9,6 +9,9 @@
 
 (version 1.2)                                                                                                                             
   Now the chat will list the user that typed the text.
+  
+(version 1.3)                                                                                                                             
+  Now the chat box will update realtime. If another user has texted, the texted will be displayed without any inputs to all other devices.
 
 PROBLEM:
 
