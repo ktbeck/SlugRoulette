@@ -14,7 +14,8 @@ def get_user_email():
 
 db.define_table('textBox',
         Field('Title'),
-        Field('chat','list:string', default=[])
+        Field('chat','list:string', default=[]),
+        Field('chatter','list:string', default=[])
         )
 
 db.textBox.id.readable = True

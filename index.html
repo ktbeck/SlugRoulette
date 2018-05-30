@@ -23,10 +23,10 @@
 		<br><br>Chats Active<br><br>
 		<div v-for="chat in chats">
 			<b>${chat.Title}</b><br>
-
+			
 			<!-- displaying the message for the chat box -->
-			<div v-for="line in chat.chat">
-				${line}<br>
+			<div v-for="line in (chat.chat.length)">
+				<b>${chat.chatter[line-1]}</b>: ${chat.chat[line-1]}
 			</div>
 
 			<!-- the sending part of the chat box -->

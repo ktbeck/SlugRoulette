@@ -86,7 +86,7 @@ var app = function() {
 			makeNewChat: self.makeNewChat,
 			getChat:     self.getChat,
 			editChat:    self.editChat,
-			delChat:  self.delChat
+			delChat:     self.delChat
 
         	}
 
