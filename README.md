@@ -21,9 +21,9 @@ PROBLEM:
 --------------------------------------------------- JOBS --------------------------------------------------------------------------------
   Frank: UI looks like complete shit right now. You will need to change myapp.css, layout.html, and index.html to improve upon the website design. I want the page to just be a list of chats titles with buttons that you can click to join them. When you click, that chat box appears and the list of titles disappear. From there you can participate in chat or leave by pressing a button. 
   
-  Shreya: I have used a timeOut function so that the website will get a new version of the chatbox every so often. Try to find a better way to implement this AND help Kyler with his task.
+  Shreya: I have used a timeOut function so that the website will get a new version of the chatbox every so often. Try to find a better way to implement this. You also have to find a way to upload our website. After all this, help Kyler with his task.
   
-  Kyler: Look into the scroll wheel for the chatbox. Also look into how we are going to upload images
+  Kyler: Look into the scroll wheel for the chatbox. Also look into how we are going to upload images.
   
 -----------------------------------------------------------------------------------------------------------------------------------------
 Try to get this done by this thursday. We are running low on time and I hope you guys take this seriously.
