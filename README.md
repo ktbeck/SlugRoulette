@@ -23,7 +23,8 @@ PROBLEM:
   (SOLVED) Currently, the array 'chat' CANNOT be displayed. As a result, I cannot work on the edit chat too. Someone fix please. 
   
 POTENTIAL UPGRADES:
-  Right now there is a loading screen btwn choosing chat to join and going into chat room. See if there is a way so that loading screen is not necessary
+  Right now there is a loading screen btwn choosing chat to join and going into chat room. See if there is a way so that loading screen is not necessary              
+  
 --------------------------------------------------- JOBS --------------------------------------------------------------------------------
   Frank: UI looks like complete shit right now. You will need to change myapp.css, layout.html, and index.html to improve upon the website design. I want the page to just be a list of chats titles with buttons that you can click to join them. When you click, that chat box appears and the list of titles disappear. From there you can participate in chat or leave by pressing a button. 
   
