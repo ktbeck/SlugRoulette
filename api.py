@@ -10,14 +10,23 @@ def add_textBox():
 
 
 def get_textBox():
+    t = db(db.textBox.id == request.vars.ID).select().first()
+    temp = dict(
+            Title   = t.Title,
+            chat    = t.chat,
+            chatter = t.chatter,
+            id      = t.id
+            )
+            
+    return response.json(temp)
+
+def get_textTitle():
     chats = []
     for r in db().select(db.textBox.ALL):
         t = dict(
                 Title = r.Title,
-                chat = r.chat,
-                chatter = r.chatter,
-                id = r.id
-        )
+                id    = r.id
+                )
         chats.append(t)
     return response.json(dict(chats=chats))
 
@@ -32,7 +41,7 @@ def edit_textBox():
     #updating the names that sent the text
     temp2 = chat.chatter
     if auth.user is None:
-        temp2.append("Anonymous")
+        temp2.append("Anonymous") 
 
     else:
         temp2.append(auth.user.first_name)

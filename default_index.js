@@ -29,28 +29,47 @@ var app = function() {
 			});
 	};
    
-	self.getChat = function(){
+	self.getTitle = function(){
 		console.log("getting chats from database");
+		$.getJSON(get_Title, {}, function(data){
 
-		$.getJSON(get_box, {}, function(data){
 				self.vue.chats = data.chats;
-				console.log(self.vue.chats);
-				setTimeout(function(){
-					self.getChat();
-				}, 500);
 
+				setTimeout(function(){
+					if(self.vue.isServer == false)
+						self.getTitle();
+				}, 500);
 
 			});
 
 
 	};
 
+	self.getChat = function(){
+		$.getJSON(get_box, {
+		
+				ID: self.vue.serverId	
+
+			}, function(data){	
+				self.vue.currentChat = data;
+
+				setTimeout(function(){
+					if(self.vue.isServer == true)
+						self.getChat();
+				}, 500);
+
+			});
+	};
+
 	self.editChat = function(chat_id){
 		console.log("adding new chat to chat box");
 		$.post(edit_box,{
+
 				chat_id: chat_id,
 				NEW: self.vue.newChatting
+
 			}, function(){
+
 				self.vue.newChatting = null;
 			
 			});
@@ -63,8 +82,7 @@ var app = function() {
 
 				chat_id: chat_id	
 
-			}, function (){
-			});
+			}, function (){});
 	};
 
 	// Complete as needed.
@@ -76,25 +94,37 @@ var app = function() {
 		
 			//These arrays are used to store retrived data from database
 			chats: [],
+			currentChat: null,
 
-			newTitle: null,
-			newChatting: null,
+			newTitle: null,       //variable to temp store a new title
+			newChatting: null,    //variable to temp store new text
+
+			//variables to check if user has joined chat server
+			isServer: false,
+			serverId: null
 
 
         	},
         	methods: {
 		
 			makeNewChat: self.makeNewChat,
+			
 			getChat:     self.getChat,
+			getTitle:    self.getTitle,
+
 			editChat:    self.editChat,
-			delChat:     self.delChat
+			delChat:     self.delChat,
+
+			//this functions switches btwn showing list of titles and showing one specific chat
+			alternate:   self.alternate,
 
         	}
 
 
     	});
 
-	self.getChat();
+	//-------- IF YOU WANT SOMETHING TO HAPPEN WHEN WEBPAGE IS LOADED, CALL FUNCTION BELOW ---------------
+	self.getTitle();
    	$("#vue-div").show();
     	return self;
 };

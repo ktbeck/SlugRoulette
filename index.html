@@ -1,12 +1,14 @@
+<!DOCTYPE html>
 {{extend 'layout.html'}}
 
 {{block head}}
 <script src="{{=URL('static', 'js/vue.js')}}"></script>
 <script>
-	var new_box  = "{{=URL('api', 'add_textBox', user_signature=True)}}";
-	var edit_box = "{{=URL('api', 'edit_textBox', user_signature=True)}}";
-	var get_box  = "{{=URL('api', 'get_textBox', user_signature=True)}}";
-	var del_box  = "{{=URL('api', 'del_textBox', user_signature=True)}}";
+	var new_box   = "{{=URL('api', 'add_textBox',   user_signature=True)}}";
+	var edit_box  = "{{=URL('api', 'edit_textBox',  user_signature=True)}}";
+	var get_box   = "{{=URL('api', 'get_textBox',   user_signature=True)}}";
+	var get_Title = "{{=URL('api', 'get_textTitle', user_signature=True)}}";
+	var del_box   = "{{=URL('api', 'del_textBox',   user_signature=True)}}";
 </script>
 {{end}}
 
@@ -14,26 +16,52 @@
 
 	<div id="vue-div" class="display:none">
 		
-		<!-- code used to make a new chat room-->
-		<button v-on:click="makeNewChat();">  Add </button>
-		<textarea type="text" placeholder="Title" v-model="newTitle"></textarea>
+		<div v-if="isServer == false">
+
+			<!-- code used to make a new chat room-->
+			<button v-on:click="makeNewChat();">  Add </button>
+			<textarea type="text" placeholder="Title" v-model="newTitle"></textarea>
 
 
-		<!-- code to display a list of chat boxes -->
-		<br><br>Chats Active<br><br>
-		<div v-for="chat in chats">
-			<b>${chat.Title}</b><br>
-			
+			<!-- code to display a list of chat Titles -->
+			<br><br>
+			Chats Active
+			<br><br>
+
+			<div v-for="chat in chats">
+
+				<button v-on:click="serverId = chat.id;
+						    getChat();
+						    isServer = true;">Join</button>
+				<b>${chat.Title}</b> 
+				<br>
+			</div>
+		</div>
+
+		<!--........... Code to display a chat box when user joins a chat ..........-->
+		<div v-if="currentChat != null">
+			${currentChat.Title}
+
 			<!-- displaying the message for the chat box -->
-			<div v-for="line in (chat.chat.length)">
-				<b>${chat.chatter[line-1]}</b>: ${chat.chat[line-1]}
+			<div v-for="line in (currentChat.chat.length)">
+				<b>${currentChat.chatter[line-1]}</b>: ${currentChat.chat[line-1]}
 			</div>
 
 			<!-- the sending part of the chat box -->
-			<button v-on:click="editChat(chat.id);"> Send </button>
-			<button v-on:click="delChat(chat.id);"> Delete </button>
-			<textarea type="text" placeholder="Send" v-model="newChatting"></textarea>
+			<button v-on:click="editChat(currentChat.id);"> Send </button>
+			<button v-on:click="delChat(currentChat.id);"> Delete </button>
+			<button v-on:click="getTitle();
+					    isServer    = false;
+					    currentChat = null;
+					    serverId    = null;"> Exit </button>
 
+			<textarea type="text" placeholder="Send" v-model="newChatting"></textarea>
+	
+		</div>
+
+		<!--.................. Loading screen when website is loading chat .................-->
+		<div v-if="isServer == true && currentChat == null">
+			LOADING CHAT BOX
 		</div>
 
 	</div>
