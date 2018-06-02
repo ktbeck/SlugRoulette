@@ -46,6 +46,7 @@ var app = function() {
 	};
 
 	self.getChat = function(){
+	
 		$.getJSON(get_box, {
 		
 				ID: self.vue.serverId	
@@ -101,7 +102,10 @@ var app = function() {
 
 			//variables to check if user has joined chat server
 			isServer: false,
-			serverId: null
+			serverId: null,
+
+			//variable used to store search string
+			searching: null
 
 
         	},
