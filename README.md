@@ -16,6 +16,9 @@
 (version 1.4)
   The chat list begins by showing a list of Titles and gives the user an option to join a chat box. If the user joins, they will be shown only the chat box where they can either participate in the chat or leave the chat. DELETE BUTTON DOES NOT WORK RIGHT NOW AND DOESNT NEED TO WORK.                                                                                                                   
           (version 1.41): No more loading screen
+
+(version 1.5)                                                                                                                           
+   Search function for chats.
   
 PROBLEM:
   Windows Explorer cannot run website. Double check to see if this happens elsewhere.
