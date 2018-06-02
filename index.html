@@ -16,7 +16,7 @@
 
 	<div id="vue-div" class="display:none">
 		
-		<div v-if="isServer == false">
+		<div v-if="currentChat == null">
 
 			<!-- code used to make a new chat room-->
 			<button v-on:click="makeNewChat();">  Add </button>
@@ -57,11 +57,6 @@
 
 			<textarea type="text" placeholder="Send" v-model="newChatting"></textarea>
 	
-		</div>
-
-		<!--.................. Loading screen when website is loading chat .................-->
-		<div v-if="isServer == true && currentChat == null">
-			LOADING CHAT BOX
 		</div>
 
 	</div>
