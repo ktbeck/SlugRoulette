@@ -14,7 +14,7 @@
   Now the chat box will update realtime. If another user has texted, the texted will be displayed without any inputs to all other devices.
 
 (version 1.4)
-  The chat list begins by showing a list of Titles and gives the user an option to join a chat box. If the user joins, they will be shown only the chat box where they can either participate in the chat or leave the chat.
+  The chat list begins by showing a list of Titles and gives the user an option to join a chat box. If the user joins, they will be shown only the chat box where they can either participate in the chat or leave the chat. DELETE BUTTON DOES NOT WORK RIGHT NOW AND DOESNT NEED TO WORK. 
   
 PROBLEM:
   Windows Explorer cannot run website. Double check to see if this happens elsewhere.
