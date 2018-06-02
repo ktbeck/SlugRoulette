@@ -18,7 +18,7 @@
           (version 1.41): No more loading screen
 
 (version 1.5)                                                                                                                           
-   Search function for chats.
+   Search function for chats. RANDOM CHAT AND CHAT SERVER BUTTON DONT WORK RIGHT NOW
   
 PROBLEM:
   Windows Explorer cannot run website. Double check to see if this happens elsewhere.
