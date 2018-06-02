@@ -15,6 +15,7 @@
 
 (version 1.4)
   The chat list begins by showing a list of Titles and gives the user an option to join a chat box. If the user joins, they will be shown only the chat box where they can either participate in the chat or leave the chat. DELETE BUTTON DOES NOT WORK RIGHT NOW AND DOESNT NEED TO WORK. 
+          (version 1.41): No more loading screen
   
 PROBLEM:
   Windows Explorer cannot run website. Double check to see if this happens elsewhere.
@@ -23,7 +24,6 @@ PROBLEM:
   (SOLVED) Currently, the array 'chat' CANNOT be displayed. As a result, I cannot work on the edit chat too. Someone fix please. 
   
 POTENTIAL UPGRADES:
-  Right now there is a loading screen btwn choosing chat to join and going into chat room. See if there is a way so that loading screen is not necessary              
   
 --------------------------------------------------- JOBS --------------------------------------------------------------------------------
   Frank: UI looks like complete shit right now. You will need to change myapp.css, layout.html, and index.html to improve upon the website design. I want the page to just be a list of chats titles with buttons that you can click to join them. When you click, that chat box appears and the list of titles disappear. From there you can participate in chat or leave by pressing a button. 
