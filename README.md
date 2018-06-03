@@ -36,7 +36,7 @@ POTENTIAL UPGRADES:
   
   Shreya: I have used a timeOut function so that the website will get a new version of the chatbox every so often. Try to find a better way to implement this. Also, you will have to give user the option to add a password when they make a chat server. THIS PASSWORD CANNOT BE NORMALLY STORED IN A STRING OR ELSE IT CAN BE EASILY STEALED. After all this, help Kyler with his task.
   
-  Kyler: Look into the scroll wheel for the chatbox. Also look into how we are going to upload images.
+  Kyler: Look into the scroll wheel for the chatbox. Also look into how we are going to upload images. In charge of FriendsList.
   
 ----------------------------------------------------------------------------------------------------------------------------------------
 Try to get this done by this thursday. We are running low on time and I hope you guys take this seriously.
