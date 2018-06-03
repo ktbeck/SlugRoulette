@@ -19,6 +19,9 @@
 
 (version 1.5)                                                                                                                           
    Search function for chats. RANDOM CHAT AND CHAT SERVER BUTTON DONT WORK RIGHT NOW
+   
+(version 1.6)                                                                                                                           
+   Now added a new tab where user can enter a Queue. QUEUE DOES NOT CURRENTLY DO ANYTHING.
   
 PROBLEM:
   Windows Explorer cannot run website. Double check to see if this happens elsewhere.
