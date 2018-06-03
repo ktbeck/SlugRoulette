@@ -15,13 +15,16 @@ var app = function() {
     //var enumerate = function(v) { var k=0; return v.map(function(e) {e._idx = k++;});}k0;
 
 	
+////////////////////////////////////// functions for chat box///////////////////////////////////////
 
-	self.makeNewChat = function() {
+	self.makeNewChat = function(data) {
 		console.log("new chat added");
+		console.log(data);
 
 		$.post(new_box,
 			{
-				Title: self.vue.newTitle
+				Title: self.vue.newTitle,
+				is_group_chat: data
 
 			}, function(data){
 				
@@ -36,7 +39,7 @@ var app = function() {
 				self.vue.chats = data.chats;
 
 				setTimeout(function(){
-					if(self.vue.isServer == false)
+					if(self.vue.isServer == false && self.vue.isRandom == false)
 						self.getTitle();
 				}, 500);
 
@@ -46,7 +49,7 @@ var app = function() {
 	};
 
 	self.getChat = function(){
-	
+		console.log("getting the chat box of chosen chat room");	
 		$.getJSON(get_box, {
 		
 				ID: self.vue.serverId	
@@ -55,7 +58,7 @@ var app = function() {
 				self.vue.currentChat = data;
 
 				setTimeout(function(){
-					if(self.vue.isServer == true)
+					if(self.vue.isServer == true && self.vue.isRandom == false)
 						self.getChat();
 				}, 500);
 
@@ -86,6 +89,42 @@ var app = function() {
 			}, function (){});
 	};
 
+/////////////////////////////////////// functions for queue //////////////////////////////////
+
+
+	self.insertQueue = function (){
+		$.post(insert_queue, {}, function(){
+
+
+
+		});
+
+	}
+
+	self.listOfQueue = function (){
+		$.getJSON(get_list_of_queue, {}, function(data){
+
+			self.vue.queueLength = data;
+
+			if(self.vue.isRandom){
+				setTimeout(function(){
+					self.listOfQueue();
+				}, 500);
+			}
+
+		});
+
+	}
+
+	self.removeQueue = function (){
+		$.post(remove_queue, {}, function(){
+
+
+
+		});
+
+	}
+
 	// Complete as needed.
 	self.vue = new Vue({
         	el: "#vue-div",
@@ -104,13 +143,18 @@ var app = function() {
 			isServer: false,
 			serverId: null,
 
-			//variable used to store search string
-			searching: null
+			searching: "", //variable user to store search string
+
+			//variable to check whether user is group chatting or seraching for random people
+			isRandom: false,
+
+			queueLength: 0,
 
 
         	},
         	methods: {
 		
+			//functions for chat
 			makeNewChat: self.makeNewChat,
 			
 			getChat:     self.getChat,
@@ -119,8 +163,11 @@ var app = function() {
 			editChat:    self.editChat,
 			delChat:     self.delChat,
 
-			//this functions switches btwn showing list of titles and showing one specific chat
-			alternate:   self.alternate,
+
+			//functions for queue
+			insertQueue: self.insertQueue,
+			listOfQueue: self.listOfQueue,
+			removeQueue: self.removeQueue,
 
         	}
 

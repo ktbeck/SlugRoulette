@@ -14,9 +14,17 @@ def get_user_email():
 
 db.define_table('textBox',
         Field('Title'),
-        Field('chat','list:string', default=[]),
-        Field('chatter','list:string', default=[]),
-        Field('chat_time', 'list:string', default=[])
+        Field('is_group_chat', 'boolean'),
+
+        Field('chat',             'list:string',  default=[]),
+        Field('chatter',          'list:string',  default=[]),
+        Field('chat_time',        'list:string',  default=[]),
+        Field('list_of_chatters', 'list:integer', default=[]),
+        Field('password',         'string')
+        )
+
+db.define_table('queue',
+        Field('person_id', 'integer')
         )
 
 db.textBox.id.readable = True

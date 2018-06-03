@@ -2,11 +2,10 @@
 
 def add_textBox():
     p = db.textBox.insert(
-            Title = request.vars.Title
+            Title         = request.vars.Title,
+            is_group_chat = request.vars.is_group_chat
             )
-    p2 = db.textBox(p)
-    print p
-    return "ok";
+    return "ok"
 
 
 def get_textBox():
@@ -23,11 +22,12 @@ def get_textBox():
 def get_textTitle():
     chats = []
     for r in db().select(db.textBox.ALL):
-        t = dict(
-                Title = r.Title,
-                id    = r.id
-                )
-        chats.append(t)
+        if r.is_group_chat == True:
+            t = dict(
+                    Title = r.Title,
+                    id    = r.id
+                    )
+            chats.append(t)
     return response.json(dict(chats=chats))
 
 
@@ -51,4 +51,24 @@ def edit_textBox():
 
 def del_textBox():
     db(db.textBox.id == request.vars.chat_id).delete()
+    return "ok"
+
+###################################### FOR QUEUE ############################################
+
+def insert_queue():
+    p = db.queue.insert(
+            person_id = auth.user.id
+            )
+    return "ok"
+
+def get_list_of_queue():
+    amount_of_people = 0
+
+    for r in db().select(db.queue.ALL):
+        amount_of_people = amount_of_people + 1
+
+    return amount_of_people
+
+def remove_queue():
+    db(db.queue.person_id == auth.user.id).delete()
     return "ok"
