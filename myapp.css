@@ -41,3 +41,13 @@ div.memo div.button_list div.buttons {
 div.memo div.button_list a.btn {
   padding: 10px;
 }
+
+div.password-control {
+  margin-top: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.donebtn {
+  margin-top: 20px;
+}

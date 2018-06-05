@@ -78,7 +78,8 @@
 						<button v-on:click="serverId = chat.id;
 								    getChat();
 								    isServer = true;
-								    searching = null;">Join</button>
+								    searching = null;"><a href="{{=URL('default', 'password')}}"> Join </a></button>
+								    <!--- Join Text does not show up --->
 						<button v-on:click="delChat(chat.id);">Delete</button>
 	
 	
