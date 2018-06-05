@@ -24,9 +24,10 @@
    Now added a new tab where user can enter a Queue. QUEUE DOES NOT CURRENTLY DO ANYTHING.
   
 PROBLEM:
-  Windows Explorer cannot run website. Double check to see if this happens elsewhere.
+  Windows Explorer cannot run website. Double check to see if this happens elsewhere.                                                   
+  Queue will not remove user if user has logged off or exited page.
 
-  (SOLVED) id of textBox is always null. As a result, I can only edit one textBox right now.                                             
+  (SOLVED) id of textBox is always null. As a result, I can only edit one textBox right now.         
   (SOLVED) Currently, the array 'chat' CANNOT be displayed. As a result, I cannot work on the edit chat too. Someone fix please. 
   
 POTENTIAL UPGRADES:
