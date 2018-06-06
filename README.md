@@ -22,6 +22,9 @@
    
 (version 1.6)                                                                                                                           
    Now added a new tab where user can enter a Queue. QUEUE DOES NOT CURRENTLY DO ANYTHING.
+   
+(version 1.7)
+   Password field added to the Join button. 
   
 PROBLEM:
   Windows Explorer cannot run website. Double check to see if this happens elsewhere.                                                   
