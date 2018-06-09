@@ -27,7 +27,8 @@
    Password field added to the Join button. 
    
 (version 2.0)                                                                                                                           
-   Random Chat now works. PLEASE IF YOU FIND BUG LIST IT UNDER PROBLEM
+   Random Chat now works. PLEASE IF YOU FIND BUG LIST IT UNDER PROBLEM.                                                                 
+   (UPDATE): fixed an issue where send button would not disappear in random chat after the chat was disconnected
   
 PROBLEM:
   Windows Explorer cannot run website. Double check to see if this happens elsewhere.                                                   
@@ -46,4 +47,4 @@ POTENTIAL UPGRADES:
   Kyler: Look into the scroll wheel for the chatbox. Also look into how we are going to upload images. In charge of FriendsList.
   
 ----------------------------------------------------------------------------------------------------------------------------------------
-Try to get this done by this thursday. We are running low on time and I hope you guys take this seriously.
+
