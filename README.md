@@ -25,6 +25,9 @@
    
 (version 1.7)
    Password field added to the Join button. 
+   
+(version 2.0)                                                                                                                           
+   Random Chat now works. PLEASE IF YOU FIND BUG LIST IT UNDER PROBLEM
   
 PROBLEM:
   Windows Explorer cannot run website. Double check to see if this happens elsewhere.                                                   
