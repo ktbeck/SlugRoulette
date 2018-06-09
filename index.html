@@ -72,8 +72,8 @@
 					</div>
 				</div>
 			
-				<button v-on:click="editChat(serverId);
-						    editChat(randomBox);">Send</button>
+				<button v-if="isChatting" v-on:click="editChat(serverId);
+						    		      editChat(randomBox);">Send</button>
 				<textarea type="text" v-if="isChatting" placeholder="send" v-model="newChatting"></textarea>
 			</div>
 
