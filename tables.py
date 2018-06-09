@@ -13,7 +13,7 @@ def get_user_email():
     return auth.user.email if auth.user is not None else None
 
 db.define_table('textBox',
-        Field('Title'),
+        Field('Title', default='template'),
         Field('is_group_chat', 'boolean'),
 
         Field('chat',             'list:string',  default=[]),
@@ -24,7 +24,12 @@ db.define_table('textBox',
         )
 
 db.define_table('queue',
-        Field('person_id', 'integer')
+        Field('person_id',   'integer'),
+        Field('chats',       'list:reference textBox', default=[]),
+        Field('is_chatting', 'boolean',                default=False),
+        Field('time_limit',  'float',                  default=0),
+        Field('time_remain', 'float',                  default=0),
+        Field('chatting_with'),
         )
 
 db.textBox.id.readable = True

@@ -33,7 +33,9 @@ var app = function() {
 	};
    
 	self.getTitle = function(){
-		console.log("getting chats from database");
+		//console.log("getting chats from database");
+		//console.log(self.vue.currentChat);
+
 		$.getJSON(get_Title, {}, function(data){
 
 				self.vue.chats = data.chats;
@@ -41,15 +43,12 @@ var app = function() {
 				setTimeout(function(){
 					if(self.vue.isServer == false && self.vue.isRandom == false)
 						self.getTitle();
-				}, 500);
-
+				}, self.vue.delay);
 			});
-
-
 	};
 
 	self.getChat = function(){
-		console.log("getting the chat box of chosen chat room");	
+		//console.log("getting the chat box of chosen chat room");	
 		$.getJSON(get_box, {
 		
 				ID: self.vue.serverId	
@@ -60,20 +59,21 @@ var app = function() {
 				setTimeout(function(){
 					if(self.vue.isServer == true && self.vue.isRandom == false)
 						self.getChat();
-				}, 500);
+				}, self.vue.delay);
 
 			});
 	};
 
 	self.editChat = function(chat_id){
 		console.log("adding new chat to chat box");
+		//alert(chat_id);
 		$.post(edit_box,{
 
 				chat_id: chat_id,
 				NEW: self.vue.newChatting
 
 			}, function(){
-
+				
 				self.vue.newChatting = null;
 			
 			});
@@ -93,37 +93,119 @@ var app = function() {
 
 
 	self.insertQueue = function (){
-		$.post(insert_queue, {}, function(){
+		$.post(insert_queue, {}, function(data){
 
-
+			self.listOfQueue();
 
 		});
 
 	}
 
+	//Gets information from database about queue
 	self.listOfQueue = function (){
 		$.getJSON(get_list_of_queue, {}, function(data){
+			/*The array passed in from the api function (data) will have all the
+			  queue Fields stored in the 0th index. After that, it will store
+			  every user in the queue ONLY IF they are waiting to find someone else
+			  to chat with*/
 
-			self.vue.queueLength = data;
+			if(data != "n"){	
+				//gives the amount of people that are current in queue
+				self.vue.queueLength = data.length;
 
+				//is current user in chat
+				if(data[0] != null){
+					self.vue.isChatting  = data[0].is_chatting;
+				}
+
+
+
+				/*if user has not been matched, we will pick a person through a list of 
+				  other people that also havent been matched*/
+				if(self.vue.isChatting == false){
+
+					//only searches IF there is anyone to be found
+					if(data.length > 1){
+
+						//pairs the users 
+						var randomUser = Math.floor(Math.random()*(data.length - 1)) + 1;
+						$.post(match_users,{
+							
+								person_id: data[randomUser].person_id
+	
+							}, function(data) {
+									
+								//console.log(data);
+							
+							});
+					}
+					else{
+						self.vue.searchingForChat += ".";
+						if(self.vue.searchingForChat.length > 5)
+							self.vue.searchingForChat = ".";
+					}
+	
+				}
+
+
+
+				//user is curently chatting
+				else if(data[0] != null){
+
+					
+					//gets time remaining for chat
+					self.vue.time = 60 - Math.floor(data[0].time_remain);
+
+					//gets the length of queue
+					length = data[0].chats.length - 1;
+					
+				
+					//if user has started new chat, then we add new chat to listChat array
+					if(self.vue.serverId != data[0].chats[length]){
+
+						//getting id of your chat box
+						self.vue.serverId  = data[0].chats[length];
+
+						//making space in array for random chat box
+						self.vue.listChats.push(null);
+	
+						//getting id of other user's chat box
+						self.vue.randomBox = data[0].chatting_with;
+					}
+
+					//if chat is not new, then update latest that
+					else if(self.vue.isRandom){
+						self.getChat();
+						self.vue.listChats[length] = self.vue.currentChat;
+					}
+	
+					//keeps track of whether a user has left and time limit
+					$.post(countdown,{}, function(){});
+					
+				}
+			}
+
+			//periodically retrieve updates about textBox and queue
 			if(self.vue.isRandom){
 				setTimeout(function(){
 					self.listOfQueue();
-				}, 500);
+					//console.log(data);
+				}, self.vue.delay);
+			}
+			else{
+				self.vue.currentChat = null;
 			}
 
 		});
 
+
 	}
 
 	self.removeQueue = function (){
-		$.post(remove_queue, {}, function(){
-
-
-
-		});
-
+		$.post(remove_queue, {}, function(){});
 	}
+
+	self.refresh = function(){}
 
 	// Complete as needed.
 	self.vue = new Vue({
@@ -134,6 +216,7 @@ var app = function() {
 		
 			//These arrays are used to store retrived data from database
 			chats: [],
+			listChats: [],
 			currentChat: null,
 
 			newTitle: null,       //variable to temp store a new title
@@ -149,7 +232,18 @@ var app = function() {
 			isRandom: false,
 
 			queueLength: 0,
+			isChatting:  false,
 
+			/*stores the id of your chat box and the chat box of the person you are chatting 
+			  to in the random chat*/
+			yourBox:   null,
+			randomBox: null,
+			time:      0,
+
+			//the intertval btwn pinging servers in milliseconds
+			delay: 500,
+
+			searchingForChat: "",
 
         	},
         	methods: {
@@ -168,6 +262,8 @@ var app = function() {
 			insertQueue: self.insertQueue,
 			listOfQueue: self.listOfQueue,
 			removeQueue: self.removeQueue,
+
+			refresh: self.refresh,
 
         	}
 

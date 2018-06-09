@@ -4,47 +4,87 @@
 {{block head}}
 <script src="{{=URL('static', 'js/vue.js')}}"></script>
 <script>
+	//api functions for chat box
 	var new_box   = "{{=URL('api', 'add_textBox',   user_signature=True)}}";
 	var edit_box  = "{{=URL('api', 'edit_textBox',  user_signature=True)}}";
 	var get_box   = "{{=URL('api', 'get_textBox',   user_signature=True)}}";
 	var get_Title = "{{=URL('api', 'get_textTitle', user_signature=True)}}";
 	var del_box   = "{{=URL('api', 'del_textBox',   user_signature=True)}}";
 
-  	//functions for queue
-	var insert_queue      = "{{=URL('api', 'insert_queue', user_signature=True)}}";
+  	//api functions for queue
+	var insert_queue      = "{{=URL('api', 'insert_queue',      user_signature=True)}}";
 	var get_list_of_queue = "{{=URL('api', 'get_list_of_queue', user_signature=True)}}";
-	var remove_queue      = "{{=URL('api', 'remove_queue', user_signature=True)}}";
+	var remove_queue      = "{{=URL('api', 'remove_queue',      user_signature=True)}}";
+
+	var match_users       = "{{=URL('api', 'match_users',       user_signature=True)}}";
+	var countdown         = "{{=URL('api', 'countdown',         user_signature=True)}}";
+
 </script>
 {{end}}
 
+<!--... makes sure that if user closes tab, they are removed from queue.
+	DOES NOT WORK ON FIREFOX IF USER CLOSES WINDOW -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<body onbeforeunload="$.post(remove_queue);">
 <div class="main_content">
 
 	<div id="vue-div" class="display:none">
 
 <!--.................................................. Buttons to alternate btwn random chat and group chat .................................-->
-		<button v-on:click="isRandom = true;
-			  	    insertQueue();
-				    listOfQueue();"> random Chat  </button>
-
-		<button v-on:click="removeQueue();
-				    if(isRandom){
-					if(currentChat == null){
-			            		getTitle();
-					}
-					else{
-						getChat();
-					}
+		<button v-on:click="if(!isRandom){
+			  	    	insertQueue();
 				    }
-				    isRandom = false;"> chat Servers </button>
+				    isRandom = true;
+				    currentChat = null;"> random Chat  </button>
+
+		<button v-on:click="if(isRandom){
+				    	removeQueue();
+				    }
+				    getTitle();
+				    isRandom =    false;
+				    listChats =   [];
+				    currentChat = null;
+				    isServer    = false;"> chat Servers </button>
 
 <!--................................................... Code to Display Random chat ..........................................................-->
+		
 		<div v-if="isRandom">
-			There are ${queueLength} in queue	
+			{{if auth.user:}}
+		
+			<!-- displays if user is still searching for someone to chat with -->
+			<div v-if="!isChatting">
+				Searching${searchingForChat}
+			</div>
+
+			<!-- displays chat for every user you have talked to in one session -->
+			<div v-if="currentChat!=null">
+				
+				<div v-if="isChatting">
+					You have ${time} seconds left
+				</div>
+				<div v-for="chats in listChats" v-if="chats != null"> 
+					
+					<b> ${chats.chat[0]}</b> <br>
+					<div v-for="line in chats.chatter.length">
+						${chats.chatter[line-1]}: ${chats.chat[line]}
+							
+					
+					</div>
+				</div>
+			
+				<button v-on:click="editChat(serverId);
+						    editChat(randomBox);">Send</button>
+				<textarea type="text" v-if="isChatting" placeholder="send" v-model="newChatting"></textarea>
+			</div>
+
+			{{else:}}
+			You must first be logged in to join the random chat
+			{{pass}}
 		</div>
 
 <!--................................................... Code to Display group chat tab .......................................................-->
 		<div v-if="!isRandom">
-			<div v-if="currentChat == null">
+			<div v-if="currentChat == null || currentChat == [] || !isServer">
 
 				<!-- code used to make a new chat room-->
 				<button v-on:click="if(newTitle == '' || newTitle == null){
@@ -52,7 +92,8 @@
 						    }
 						    else{
 						    	makeNewChat(true);
-						    }">  Add </button>
+						    }
+						    refresh();">  Add </button>
 				<textarea type="text" placeholder="Title" v-model="newTitle"></textarea>
 
 
@@ -78,8 +119,7 @@
 						<button v-on:click="serverId = chat.id;
 								    getChat();
 								    isServer = true;
-								    searching = null;"><a href="{{=URL('default', 'password')}}"> Join </a></button>
-								    <!--- Join Text does not show up --->
+								    searching = null;">Join</button>
 						<button v-on:click="delChat(chat.id);">Delete</button>
 	
 	
@@ -90,7 +130,7 @@
 			</div>
 	
 			<!--........... Code to display a chat box when user joins a chat ..........-->
-			<div v-if="currentChat != null">
+			<div v-if="currentChat != null && isServer">
 				${currentChat.Title}
 	
 				<!-- displaying the message for the chat box -->
@@ -111,5 +151,8 @@
 		</div>
 	</div>
 </div>
+</body>
 
 <script src="{{=URL('static', 'js/default_index.js')}}"></script>
+
+
