@@ -36,9 +36,23 @@ var app = function() {
 		//console.log("getting chats from database");
 		//console.log(self.vue.currentChat);
 
-		$.getJSON(get_Title, {}, function(data){
+		temp = -1
+		if(self.vue.chats != null){
+			temp = self.vue.chats.length;
+			console.log(self.vue.chats.length);
+		}
+		
 
-				self.vue.chats = data.chats;
+		$.getJSON(get_Title, {
+					
+					current: temp
+
+				}, function(data){
+
+
+				console.log(data);
+				if(data != 0)
+					self.vue.chats = data.chats;
 
 				setTimeout(function(){
 					if(self.vue.isServer == false && self.vue.isRandom == false)
@@ -51,10 +65,10 @@ var app = function() {
 		//console.log("getting the chat box of chosen chat room");
 		//console.log(self.vue.currentChat);
 		
-
 		temp = -1;
-		if(self.vue.currenChat != null)
+		if(self.vue.currentChat != null){
 			temp = self.vue.currentChat.chat.length;
+		}
 		
 		$.getJSON(get_box, {
 		
@@ -221,6 +235,8 @@ var app = function() {
 		$.post(remove_queue, {}, function(){});
 	}
 
+	self.refresh = function (){};
+
 	// Complete as needed.
 	self.vue = new Vue({
         	el: "#vue-div",
@@ -275,6 +291,8 @@ var app = function() {
 			insertQueue: self.insertQueue,
 			listOfQueue: self.listOfQueue,
 			removeQueue: self.removeQueue,
+
+			refresh:     self.refresh,
 
         	}
 

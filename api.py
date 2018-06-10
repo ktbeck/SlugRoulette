@@ -12,7 +12,7 @@ def add_textBox():
 def get_textBox():
     t = db(db.textBox.id == request.vars.ID).select().first()
 
-    if t is not None and request.vars.current is -1:
+    if (t is not None and request.vars.current is -1) or int(request.vars.current) is not len(t.chat):
         temp = dict(
                 Title   = t.Title,
                 chat    = t.chat,
@@ -21,20 +21,10 @@ def get_textBox():
                 )
             
         return response.json(temp)
-
-    if request.vars.current is not len(t.chat):
-        temp = dict(
-                Title   = t.Title,
-                chat    = t.chat,
-                chatter = t.chatter,
-                id      = t.id,
-                text    = len(t.chat),
-                text2   = request.vars.current
-                )
-        return response.json(temp)
     return 0
 
 def get_textTitle():
+    temp = 0
     chats = []
     for r in db().select(db.textBox.ALL):
         if r.is_group_chat == True:
@@ -43,8 +33,11 @@ def get_textTitle():
                     id    = r.id
                     )
             chats.append(t)
-    return response.json(dict(chats=chats))
+            temp = temp + 1
 
+    if int(request.vars.current) is not temp:
+        return response.json(dict(chats=chats))
+    return 0
 
 def edit_textBox():
     chat = db(db.textBox.id == request.vars.chat_id).select().first()
