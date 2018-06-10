@@ -100,6 +100,9 @@ var app = function() {
 			}, function (){});
 	};
 
+	self.refresh = function(){
+
+	};
 /////////////////////////////////////// functions for queue //////////////////////////////////
 
 
@@ -300,6 +303,8 @@ var app = function() {
 
         	},
         	methods: {
+
+        	refresh: self.refresh,
 		
 			//functions for chat
 			makeNewChat: self.makeNewChat,
