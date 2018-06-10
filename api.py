@@ -12,16 +12,27 @@ def add_textBox():
 def get_textBox():
     t = db(db.textBox.id == request.vars.ID).select().first()
 
-    if t is not None:
+    if t is not None and request.vars.current is -1:
         temp = dict(
                 Title   = t.Title,
                 chat    = t.chat,
                 chatter = t.chatter,
-                id      = t.id
+                id      = t.id,
                 )
             
         return response.json(temp)
-    return "chatBox does not exist"
+
+    if request.vars.current is not len(t.chat):
+        temp = dict(
+                Title   = t.Title,
+                chat    = t.chat,
+                chatter = t.chatter,
+                id      = t.id,
+                text    = len(t.chat),
+                text2   = request.vars.current
+                )
+        return response.json(temp)
+    return 0
 
 def get_textTitle():
     chats = []
@@ -79,17 +90,20 @@ def get_list_of_queue():
 
     #gets logged in users data
     queue.append(db(db.queue.person_id == auth.user.id).select().first())
+    #queue.append(request.vars.isChatting)
+    #queue.append(False)
 
     #gets the data of every other user that isnt chatting with another random person
-    for r in db().select(db.queue.ALL):
-        if r.person_id != auth.user.id and r.is_chatting == False:
-            temp = dict(
+    if request.vars.isChatting == 'false':
+        for r in db().select(db.queue.ALL):
+            if r.person_id != auth.user.id and r.is_chatting == False:
+                temp = dict(
 
-                    person_id   = r.person_id,
-                    is_chatting = r.is_chatting,
+                        person_id   = r.person_id,
+                        is_chatting = r.is_chatting,
 
-                )
-            queue.append(temp)
+                    )   
+                queue.append(temp)
 
     return response.json(queue)
 

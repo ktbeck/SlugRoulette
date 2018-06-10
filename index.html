@@ -24,8 +24,9 @@
 
 <!--... makes sure that if user closes tab, they are removed from queue.
 	DOES NOT WORK ON FIREFOX IF USER CLOSES WINDOW -->
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
-<body onbeforeunload="$.post(remove_queue);">
+<!--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<body onbeforeunload="console.log('a');
+	$.post(remove_queue);">-->
 <div class="main_content">
 
 	<div id="vue-div" class="display:none">
@@ -74,9 +75,20 @@
 			
 				<button v-if="isChatting" v-on:click="editChat(serverId);
 						    		      editChat(randomBox);">Send</button>
-				<textarea type="text" v-if="isChatting" placeholder="send" v-model="newChatting"></textarea>
-			</div>
+				<textarea type="text" v-if="isChatting" placeholder="send" v-model="newChatting" 
+					  ></textarea>
 
+				<script>
+					function isEnterRandom(event){
+						var x = event.which || event.keyCode;
+						if(x == 13){
+							${editChat('${serverId}')}
+							${editChat('${randomBox}')}
+						}
+					}	
+				</script>
+
+			</div>
 			{{else:}}
 			You must first be logged in to join the random chat
 			{{pass}}
@@ -151,7 +163,6 @@
 		</div>
 	</div>
 </div>
-</body>
 
 <script src="{{=URL('static', 'js/default_index.js')}}"></script>
 

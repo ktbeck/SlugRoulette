@@ -48,13 +48,24 @@ var app = function() {
 	};
 
 	self.getChat = function(){
-		//console.log("getting the chat box of chosen chat room");	
+		//console.log("getting the chat box of chosen chat room");
+		//console.log(self.vue.currentChat);
+		
+
+		temp = -1;
+		if(self.vue.currenChat != null)
+			temp = self.vue.currentChat.chat.length;
+		
 		$.getJSON(get_box, {
 		
-				ID: self.vue.serverId	
+				ID:      self.vue.serverId,
+				current: temp
 
-			}, function(data){	
-				self.vue.currentChat = data;
+			}, function(data){
+			
+				console.log(data);
+				if(data != 0)
+					self.vue.currentChat = data;
 
 				setTimeout(function(){
 					if(self.vue.isServer == true && self.vue.isRandom == false)
@@ -103,12 +114,17 @@ var app = function() {
 
 	//Gets information from database about queue
 	self.listOfQueue = function (){
-		$.getJSON(get_list_of_queue, {}, function(data){
+		$.getJSON(get_list_of_queue, {
+					
+				isChatting: self.vue.isChatting
+	
+			}, function(data){
 			/*The array passed in from the api function (data) will have all the
 			  queue Fields stored in the 0th index. After that, it will store
 			  every user in the queue ONLY IF they are waiting to find someone else
 			  to chat with*/
-
+				
+			console.log(data);
 			if(data != "n"){	
 				//gives the amount of people that are current in queue
 				self.vue.queueLength = data.length;
@@ -174,7 +190,7 @@ var app = function() {
 					}
 
 					//if chat is not new, then update latest that
-					else if(self.vue.isRandom){
+					else if(self.vue.isRandom && data[0].chats[length] == self.vue.serverId){
 						self.getChat();
 						self.vue.listChats[length] = self.vue.currentChat;
 					}
@@ -205,8 +221,6 @@ var app = function() {
 		$.post(remove_queue, {}, function(){});
 	}
 
-	self.refresh = function(){}
-
 	// Complete as needed.
 	self.vue = new Vue({
         	el: "#vue-div",
@@ -236,7 +250,6 @@ var app = function() {
 
 			/*stores the id of your chat box and the chat box of the person you are chatting 
 			  to in the random chat*/
-			yourBox:   null,
 			randomBox: null,
 			time:      0,
 
@@ -262,8 +275,6 @@ var app = function() {
 			insertQueue: self.insertQueue,
 			listOfQueue: self.listOfQueue,
 			removeQueue: self.removeQueue,
-
-			refresh: self.refresh,
 
         	}
 
