@@ -29,6 +29,10 @@
 (version 2.0)                                                                                                                           
    Random Chat now works. PLEASE IF YOU FIND BUG LIST IT UNDER PROBLEM.                                                                 
    (UPDATE): fixed an issue where send button would not disappear in random chat after the chat was disconnected
+   
+(version 2.1)
+	Usernames and queue working properly.
+	All files on git. Fixed bugs with usernames.
   
 PROBLEM:
   Windows Explorer cannot run website. Double check to see if this happens elsewhere.                                                   
