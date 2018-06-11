@@ -31,19 +31,19 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette2/default/index">Home<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette/default/index">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette2/default/chat">Chat Anonymously</a>
+              <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette/default/chat">Chat Anonymously</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette2/default/user/register?_next=/SlugRoulette2/default/index">Sign up</a>
+              <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette/default/user/register?_next=/SlugRoulette/default/index">Sign up</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette2/default/user/login?_next=/SlugRoulette2/default/index" >Sign in</a>
+              <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette/default/user/login?_next=/SlugRoulette/default/index" >Sign in</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette2/default/user/logout?_next=/SlugRoulette2/default/index">Log Out</a>
+              <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette/default/user/logout?_next=/SlugRoulette/default/index">Log Out</a>
             </li>
           </ul>
         </div>
@@ -59,7 +59,7 @@
 				  	    	insertQueue();
 					    }
 					    isRandom = true;
-					    currentChat = null;"> random Chat  </button>
+					    currentChat = null;"> Random Chat  </button>
 	
 			<button v-on:click="if(isRandom){
 					    	removeQueue();
@@ -68,7 +68,7 @@
 					    isRandom =    false;
 					    listChats =   [];
 					    currentChat = null;
-					    isServer    = false;"> chat Servers </button>
+					    isServer    = false;"> Chat Servers </button>
 	
 	<!--................................................... Code to Display Random chat ..........................................................-->
 			
