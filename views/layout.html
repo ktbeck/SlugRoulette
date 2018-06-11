@@ -16,10 +16,6 @@
     {{include "web2py_ajax.html"}}
   </head>
   <body class="black" onbeforeunload="$.post(remove_queue);">
-    {{if response.flash:}}
-    <div class="w2p_flash">
-      {{=response.flash}}
-    </div>
     {{pass}}
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
