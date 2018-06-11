@@ -24,11 +24,14 @@ var app = function() {
 		$.post(new_box,
 			{
 				Title: self.vue.newTitle,
-				is_group_chat: data
+				is_group_chat: data,
+				new_password: self.vue.pass
 
 			}, function(data){
-				
+				console.log(self.vue.pass);	
+				console.log(data);
 				self.vue.newTitle = null;
+				self.vue.pass = null;
 			});
 	};
    
@@ -272,10 +275,13 @@ var app = function() {
 			chats: [],
 			listChats: [],
 			currentChat: null,
+			passwords: null,
+			isPassword_empty: null,
 
 			newTitle: null,       //variable to temp store a new title
 			newChatting: null,    //variable to temp store new text
-
+            pass: null,          // stores new password
+            
 			//variables to check if user has joined chat server
 			isServer: false,
 			serverId: null,

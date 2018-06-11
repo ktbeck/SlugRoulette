@@ -119,6 +119,8 @@
 							    }
 							    refresh();">  Add </button>
 					<textarea type="text" placeholder="Title" v-model="newTitle"></textarea>
+					<input style= "border-style: solid;
+    border-width: 4px;" type="password" placeholder="Please create your password (optional)" v-model="pass">
 	
 	
 	
@@ -149,6 +151,9 @@
 		
 							<b>${chat.Title}</b> 
 							<br>
+							<div v-if="chat.hasPW">
+							<i class="fa fa-lock"></i>
+						</div>
 						</div>
 					</div>
 				</div>

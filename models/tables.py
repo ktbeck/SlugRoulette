@@ -15,6 +15,8 @@ def get_user_email():
 db.define_table('textBox',
         Field('Title', default='template'),
         Field('is_group_chat', 'boolean'),
+        Field('new_password',  'password'),
+        Field('has_password',  'boolean'),
 
         Field('chat',             'list:string',  default=[]),
         Field('chatter',          'list:string',  default=[]),

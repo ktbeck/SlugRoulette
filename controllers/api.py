@@ -1,10 +1,19 @@
 # Here go your api methods.
 
 def add_textBox():
+     hasPW = True;
+    if  request.vars.new_password == "":
+        print "WALA"
+        hasPW = False;
     p = db.textBox.insert(
-        Title=request.vars.Title,
-        is_group_chat=request.vars.is_group_chat
-    )# Here go your api methods.
+        Title         =  request.vars.Title,
+        is_group_chat =  request.vars.is_group_chat,
+        new_password  =  request.vars.new_password,
+        has_password  =  hasPW
+
+    )
+    return request.vars.new_password
+   
 import time
 
 def add_textBox():

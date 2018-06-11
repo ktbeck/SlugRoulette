@@ -95,3 +95,13 @@ CREATE TABLE "otherUserInfo"(
     "friendsList" TEXT
 );
 success!
+timestamp: 2018-06-11T16:44:27.108981
+ALTER TABLE "textBox" ADD "new_password" CHAR(512);
+timestamp: 2018-06-11T16:44:27.119973
+ALTER TABLE "textBox" ADD "has_password" CHAR(1);
+success!
+success!
+success!
+success!
+success!
+success!
