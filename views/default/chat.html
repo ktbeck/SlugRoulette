@@ -124,9 +124,9 @@
 			</div>
 	
 	<!--................................................... Code to Display group chat tab .......................................................-->
-	<div class="test2 container" style="border:5px solid #cecece">
+	<div class="container" style="border:5px solid #cecece">
 			<div v-if="!isRandom">		
-				<div class="test2 container half">
+				<div class="quarter left">
 				<!-- code used to make a new chat room-->
 				<button v-on:click="if(newTitle == '' || newTitle == null){
 							alert('your Title cannot be empty. Please try again');
@@ -170,7 +170,7 @@
 				</div>
 		
 				<!--........... Code to display a chat box when user joins a chat ..........-->
-				<div class="test2 container half" style="border:5px solid #cecece" v-if="currentChat != null">
+				<div class="threequarters right" style="border:5px solid #cecece" v-if="currentChat != null">
 					${currentChat.Title}
 		
 					<!-- displaying the message for the chat box -->
