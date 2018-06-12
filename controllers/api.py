@@ -111,8 +111,10 @@ def get_list_of_queuess():
 
 def match_users():
 
-    user1 =      db(db.queue.person_id == auth.user.id).select().first()
-    user2 =      db(db.queue.person_id == request.vars.person_id).select().first()
+    user1 = db(db.queue.person_id == auth.user.id).select().first()
+    user2 = db(db.queue.person_id == request.vars.person_id).select().first()
+    username1 = db(db.otherUserInfo.user_id == auth.user.id).select().first()
+    username2 = db(db.otherUserInfo.user_id == request.vars.person_id).select().first()
     user2_info = db(db.auth_user.id    == request.vars.person_id).select().first()
 
     if user1 is not None and user2 is not None and user1.is_chatting == False and user2.is_chatting == False:
@@ -120,14 +122,14 @@ def match_users():
         #adding new textBox for first user
         temp = user1.chats
         p = db.textBox.insert(
-                    chat = ['You are now chatting with ' + user2_info.first_name]
+                    chat = ['You are now chatting with ' + username2.username]
                 )
         temp.append(p)
 
         #adding new textBox for second user
         temp2 = user2.chats
         p2 = db.textBox.insert(
-                    chat = ['you are now chatting with ' + auth.user.first_name]
+                    chat = ['you are now chatting with ' + username1.username]
                )
         temp2.append(p2)
 
@@ -246,8 +248,7 @@ def duplicate():
         # response.flash = T("Username already taken")
         return 0
     return 1
-
-
+	
 def put_username():
     p = db.otherUserInfo.insert(username = request.vars.username)
     return "ok"
@@ -256,4 +257,5 @@ def get_username():
     t = db(db.otherUserInfo.user_id == auth.user.id).select().first()
     return response.json(t)
 
-
+def add_friend():
+	print test

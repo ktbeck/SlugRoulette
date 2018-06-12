@@ -309,7 +309,7 @@ var app = function() {
 			time:      0,
 
 			//the intertval btwn pinging servers in milliseconds
-			chatDelay:   100,
+			chatDelay:   500,
 			normalDelay: 500,
 
 			searchingForChat: "",
