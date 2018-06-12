@@ -48,15 +48,19 @@
             <li class="nav-item">
               <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette/default/chat">Chat Anonymously</a>
             </li>
+	    {{if auth.user is None:}}
             <li class="nav-item">
               <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette/default/user/register?_next=/SlugRoulette/default/index">Sign up</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette/default/user/login?_next=/SlugRoulette/default/index" >Sign in</a>
             </li>
+	    {{pass}}
+	    {{if auth.user:}}
             <li class="nav-item">
               <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette/default/user/logout?_next=/SlugRoulette/default/index">Log Out</a>
             </li>
+	    {{pass}}
           </ul>
         </div>
       </nav>
@@ -74,7 +78,7 @@
           <div class="carousel-item active">
             <img class="first-slide" src="../static/images/carousel1.jpg" alt="First slide">
             <div class="container">
-              <div class="carousel-caption text-left">
+              <div class="carousel-caption text-left" style=" text-shadow:5px 5px #000000;">
                 <h1>Sign Up and Meet/Chat with Local Slugs!</h1>
                 <p>As simple as signing up and clicking a button!</p>
                 <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>

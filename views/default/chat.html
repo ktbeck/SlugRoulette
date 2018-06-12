@@ -44,15 +44,20 @@
             <li class="nav-item">
               <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette/default/chat">Chat Anonymously</a>
             </li>
+	    {{if auth.user is None:}}
             <li class="nav-item">
               <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette/default/user/register?_next=/SlugRoulette/default/index">Sign up</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette/default/user/login?_next=/SlugRoulette/default/index" >Sign in</a>
             </li>
+	    {{pass}}
+
+	    {{if auth.user:}}
             <li class="nav-item">
               <a class="nav-link" href="http://127.0.0.1:8000/SlugRoulette/default/user/logout?_next=/SlugRoulette/default/index">Log Out</a>
             </li>
+	    {{pass}}
           </ul>
         </div>
       </nav>
@@ -124,13 +129,10 @@
 			</div>
 	
 	<!--................................................... Code to Display group chat tab .......................................................-->
-	<div class="container">
+	<div class="container" style="border:5px solid #cecece">
 			<div v-if="!isRandom">		
 				<div class="quarter left">
 				<!-- code used to make a new chat room-->
-				<div class="chat_title">
-					Create a Room:
-				</div>
 				<button v-on:click="if(newTitle == '' || newTitle == null){
 							alert('your Title cannot be empty. Please try again');
 						    }
@@ -143,9 +145,8 @@
 	
 	
 				<br><br>
-				<div class="chat_title">
-					Chats Active
-				</div>
+				Chats Active
+				<br><br>
 	
 				<!-- code for serach bar for chat Titles -->
 				<textarea type="text" placeholder="Search for Chat" v-model="searching"></textarea>
@@ -174,10 +175,9 @@
 				</div>
 		
 				<!--........... Code to display a chat box when user joins a chat ..........-->
-				<div class="chat1 threequarters right" style="border:5px solid #cecece" v-if="currentChat != null">
-					<div class="chat_title">
-						Now Chatting In: ${currentChat.Title}
-					</div>
+				<div class="threequarters right" style="border:5px solid #cecece" v-if="currentChat != null">
+					${currentChat.Title}
+		
 					<!-- displaying the message for the chat box -->
 					<div v-for="line in (currentChat.chat.length)">
 						<div class="chat1 container darker">
@@ -188,7 +188,7 @@
 					<!-- the sending part of the chat box -->
 					<button v-on:click="editChat(currentChat.id);"> Send </button>
 		
-					<textarea type="text" placeholder="Message..." v-model="newChatting"></textarea>
+					<textarea type="text" placeholder="Send" v-model="newChatting"></textarea>
 		
 				</div>
 			</div>
