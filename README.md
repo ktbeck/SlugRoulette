@@ -30,6 +30,10 @@ Random Chat now works. PLEASE IF YOU FIND BUG LIST IT UNDER PROBLEM.
 (versions 2.1)
 Readded README. Queue works, usernames work, and chat works. UI not totally connected.
 
+(version 2.2)
+Uploaded main UI for main page. Content is mostly complete aside from some images needed and minor adjustments to bottom elements.
+Chat has been migrated to another page.
+
 PROBLEM: Windows Explorer cannot run website. Double check to see if this happens elsewhere.
 
 (SOLVED)Queue will not remove user if user has logged off or exited page.
