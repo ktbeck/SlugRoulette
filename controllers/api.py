@@ -60,7 +60,8 @@ def edit_textBox():
         temp2.append("Anonymous") 
 
     else:
-        temp2.append(auth.user.first_name)
+        user = db(db.otherUserInfo.user_id == auth.user.id).select().first()
+        temp2.append(user.username)
 
     #updating the time that the text was sent
     temp3 = chat.chat_time
@@ -255,24 +256,4 @@ def get_username():
     t = db(db.otherUserInfo.user_id == auth.user.id).select().first()
     return response.json(t)
 
-###################################### FOR QUEUE ############################################
 
-def insert_queue():
-    p = db.queue.insert(
-        person_id=auth.user.id
-    )
-    return "ok"
-
-
-def get_list_of_queue():
-    amount_of_people = 0
-
-    for r in db().select(db.queue.ALL):
-        amount_of_people = amount_of_people + 1
-
-    return amount_of_people
-
-
-def remove_queue():
-    db(db.queue.person_id == auth.user.id).delete()
-    return "ok"
