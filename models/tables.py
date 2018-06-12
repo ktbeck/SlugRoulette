@@ -35,7 +35,7 @@ db.define_table('queue',
 db.define_table('otherUserInfo',
         Field('user_id', 'integer', default=auth.user_id),
         Field('username', 'string'),
-        Field('friendsList', 'list:string', default=[])
+        Field('friends', 'list:string', default=[])
         )
 
 db.textBox.id.readable = True

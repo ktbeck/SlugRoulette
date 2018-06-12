@@ -230,11 +230,11 @@ var app = function() {
 		});
 
 
-	}
+	};
 
 	self.removeQueue = function (){
 		$.post(remove_queues, {}, function(data){});
-	}
+	};
 	
 	//username functions	
 	self.set_username = function(){
@@ -273,6 +273,32 @@ var app = function() {
 			});
 	};
 
+	self.request_friend = function(){
+		self.vue.requested = true;
+		self.vue.acc_or_rej = false;
+	};
+
+	self.reject_friend = function(){
+		self.vue.acc_or_rej = true;
+		self.vue.requested = false;
+		for(var i = 0; i<self.vue.friends.length; i++) {
+            console.log(self.vue.friends[i]);
+        }
+	};
+
+	self.accept_friend = function(){
+		$.get(show_friends, function(data){
+			self.vue.friends = data;
+			self.vue.data = data;
+			console.log("FRIENDS LEN =" + self.vue.friends.length);
+			for(var i = 0; i<self.vue.friends.length; i++) {
+                console.log(self.vue.friends[i]);
+            }
+		self.vue.acc_or_rej = true;
+		self.vue.requested = false;
+		})
+	};
+
 	// Complete as needed.
 	self.vue = new Vue({
         	el: "#vue-div",
@@ -302,6 +328,7 @@ var app = function() {
 
 			queueLength: 0,
 			isChatting:  false,
+			friends: [],
 
 			/*stores the id of your chat box and the chat box of the person you are chatting 
 			  to in the random chat*/
@@ -309,13 +336,15 @@ var app = function() {
 			time:      0,
 
 			//the intertval btwn pinging servers in milliseconds
-			chatDelay:   500,
-			normalDelay: 500,
+			chatDelay:   2000, //100
+			normalDelay: 2000, //500
 
 			searchingForChat: "",
 			
 			username: null,
-			needs_username: false
+			needs_username: false,
+			requested: false,
+			acc_or_rej: false,
 
         	},
         	methods: {
@@ -335,6 +364,9 @@ var app = function() {
 			//username functions
 			set_username: self.set_username,
 			get_username: self.get_username,
+			request_friend: self.request_friend,
+			reject_friend: self.reject_friend,
+			accept_friend: self.accept_friend,
 
 			//functions for queue
 			insertQueue: self.insertQueue,

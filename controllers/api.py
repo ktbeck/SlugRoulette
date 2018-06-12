@@ -115,7 +115,7 @@ def match_users():
     user2 = db(db.queue.person_id == request.vars.person_id).select().first()
     username1 = db(db.otherUserInfo.user_id == auth.user.id).select().first()
     username2 = db(db.otherUserInfo.user_id == request.vars.person_id).select().first()
-    user2_info = db(db.auth_user.id    == request.vars.person_id).select().first()
+    user2_info = db(db.auth_user.id == request.vars.person_id).select().first()
 
     if user1 is not None and user2 is not None and user1.is_chatting == False and user2.is_chatting == False:
     
@@ -241,21 +241,14 @@ def del_textBox():
     db(db.textBox.id == request.vars.chat_id).delete()
     return "ok"
 
-def duplicate():
-    check = db(db.otherUserInfo.username == request.vars.username).select().first()
-    print(check)
-    if check is None:
-        # response.flash = T("Username already taken")
-        return 0
-    return 1
-	
-def put_username():
-    p = db.otherUserInfo.insert(username = request.vars.username)
-    return "ok"
 
-def get_username():
-    t = db(db.otherUserInfo.user_id == auth.user.id).select().first()
-    return response.json(t)
-
-def add_friend():
-	print test
+def show_friends():
+    #return response.json(["ok","ok"])
+    # username1 = db(db.otherUserInfo.user_id == auth.user.id).select().first()
+    # username2 = db(db.otherUserInfo.user_id == request.vars.person_id).select().first()
+    r = db(db.otherUserInfo.user_id == auth.user.id).select().first()
+    #t = dict(
+    #)
+    #print("SHOWING FRIENDS A_TOISAFIDGSLISALIFLDSFILFDSISDF" +
+    #      "FPJDSFSDLFSDFL:DSOFJDSFOJDLSFIJSDLFIJSDLFI")
+    return response.json(r.friends)

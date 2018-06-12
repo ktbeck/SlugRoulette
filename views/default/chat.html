@@ -27,6 +27,8 @@
 	var setUsername       = "{{=URL('api', 'store_username')}}";
 	var getUsername       = "{{=URL('api', 'grab_username')}}";
 	var check_repeats     = "{{=URL('api', 'check_username')}}";
+	var show_friends       = "{{=URL('api', 'show_friends')}}";
+
 </script>
 {{end}}
 <body>
@@ -106,10 +108,15 @@
 						
 						</div>
 					</div>
-				
+					<button v-if="isChatting && !requested && !acc_or_rej" v-on:click="request_friend()">
+						Request friend
+					</button>
+					<div v-if="requested">Sent Friend Request</div>
+					<button v-if="requested" v-on:click="accept_friend()">Confirm friend request</button>
+					<button v-if="requested" v-on:click="reject_friend()">Reject friend request</button>
 					<button v-if="isChatting" v-on:click="editChat(rserverId);
 							    		      editChat(randomBox);">Send</button>
-					<textarea type="text" v-if="isChatting" placeholder="send" v-model="newChatting"></textarea>
+					<textarea type="text" v-if="isChatting" v-model="newChatting"></textarea>
 				</div>
 	
 				{{else:}}
