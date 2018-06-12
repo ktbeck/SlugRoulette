@@ -238,7 +238,7 @@ var app = function() {
 	
 	//username functions	
 	self.set_username = function(){
-		$.get(get_duplicates, {
+		$.get(check_repeats, {
 			username: self.vue.username
 		}, function(data) {
 			if(self.vue.username == ""){
@@ -247,7 +247,7 @@ var app = function() {
 			else{
                 console.log(data);
                 if (data == 0) {
-                    $.post(send_username,
+                    $.post(setUsername,
                         {
                             username: self.vue.username
                         }, function (data) {
@@ -262,7 +262,7 @@ var app = function() {
 	};
 
 	self.get_username = function(){
-		$.get(get_username_url, {}, function(data){
+		$.get(getUsername, {}, function(data){
 				if(data == null){
 					self.vue.has_username =  true;
 				}
@@ -315,7 +315,7 @@ var app = function() {
 			searchingForChat: "",
 			
 			username: null,
-			has_username: null
+			has_username: true
 
         	},
         	methods: {

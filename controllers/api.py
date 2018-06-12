@@ -173,7 +173,7 @@ def remove_queues():
 	
 	
 #username functions
-def duplicate():
+def check_username():
     check = db(db.otherUserInfo.username == request.vars.username).select().first()
     print(check)
     if check is None:
@@ -181,11 +181,11 @@ def duplicate():
         return 0
     return 1
 
-def put_username():
+def store_username():
     p = db.otherUserInfo.insert(username = request.vars.username)
     return "ok"
 
-def get_username():
+def grab_username():
 	if auth.user != None:
 		t = db(db.otherUserInfo.user_id == auth.user.id).select().first()
 		return response.json(t)

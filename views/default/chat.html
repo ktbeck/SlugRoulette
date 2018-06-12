@@ -4,6 +4,11 @@
 {{block head}}
 <script src="{{=URL('static', 'js/vue.js')}}"></script>
 <script>
+	{{if auth.user is None:}}
+        var logged_in = false;
+    {{else:}}
+        var logged_in = true;
+    {{pass}}
 	//api functions for chat box
 	var new_box   = "{{=URL('api', 'add_textBox',   user_signature=True)}}";
 	var edit_box  = "{{=URL('api', 'edit_textBox',  user_signature=True)}}";
@@ -19,9 +24,12 @@
 	var match_users       = "{{=URL('api', 'match_users',       user_signature=True)}}";
 	var countdown         = "{{=URL('api', 'countdown',         user_signature=True)}}";
 
+	var setUsername       = "{{=URL('api', 'store_username')}}";
+	var getUsername  = "{{=URL('api', 'grab_username')}}";
+	var check_repeats     = "{{=URL('api', 'check_username')}}";
 </script>
 {{end}}
-<	body>
+<body>
 	<header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">Slug Roulette</a>
@@ -51,8 +59,15 @@
     </header>
 
 	<div class="main_content">
-	
+		<br>
 		<div id="vue-div" class="display:none">
+			<div v-if="logged_in">
+				<div v-if="has_username">
+				<script>console.log(has_username);</script>
+					<input v-model="username" type="text">
+					<button v-on:click="set_username()"> Set Username </button>
+				</div>
+			</div>
 	
 	<!--.................................................. Buttons to alternate btwn random chat and group chat .................................-->
 			<button v-on:click="if(!isRandom){
