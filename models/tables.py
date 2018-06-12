@@ -20,7 +20,7 @@ db.define_table('textBox',
         Field('chatter',          'list:string',  default=[]),
         Field('chat_time',        'list:string',  default=[]),
         Field('list_of_chatters', 'list:string',  default=[]),
-        Field('password',         'string')
+        Field('password',         'string'),
 
         )
 

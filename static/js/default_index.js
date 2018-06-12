@@ -264,11 +264,11 @@ var app = function() {
 	self.get_username = function(){
 		$.get(getUsername, {}, function(data){
 				if(data == null){
-					self.vue.has_username =  true;
+					self.vue.needs_username =  true;
 				}
 				else{
 					// console.log(data);
-					self.vue.has_username = false;
+					self.vue.needs_username = false;
 				}
 			});
 	};
@@ -315,7 +315,7 @@ var app = function() {
 			searchingForChat: "",
 			
 			username: null,
-			has_username: true
+			needs_username: false
 
         	},
         	methods: {
