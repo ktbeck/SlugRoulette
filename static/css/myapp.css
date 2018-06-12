@@ -55,3 +55,16 @@ div.password-control {
 div.chat_content {
   padding: 150px;
 }
+
+div.chat1 {
+    border: 5px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}

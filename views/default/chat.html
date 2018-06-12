@@ -63,40 +63,6 @@
     </div>
 
     <!-- Main code to display the chats -->
-    <div class="chat_content container" style="border:5px solid #cecece">
-    	<div class="chat_rooms quarter">
-    		<!-- code for serach bar for chat Titles -->
-				<textarea type="text" placeholder="Search for Chat" v-model="searching"></textarea>
-			
-				<!-- code to display a list of chat Titles -->
-				<div v-for="chat in chatts">
-	
-					<!-- if statement checks if the chat is being searched for -->
-					<div v-if="searching == null       ||
-						   searching == ''         ||
-						   chat.Title == searching ||
-						  (chat.Title.length > searching.length && 
-						   chat.Title.substring(0,searching.length) == searching)">
-	
-						<!-- if this button is clicked, then user is redirected to the chat -->
-						<button v-on:click="serverId = chat.id;
-								    getChat();
-								    isServer = true;
-								    searching = null;">Join</button>
-		
-		
-						<b>${chat.Title}</b> 
-						<br>
-					</div>
-				</div>
-    	</div>
-    	<div class="chat_content half">
-    		placeholder for chat_content
-    	</div>
-    	<div class="user_list quarter">
-    		placeholder for user_list
-    	</div>
-    </div>
 
 	<div class="main_content">
 	
@@ -158,8 +124,9 @@
 			</div>
 	
 	<!--................................................... Code to Display group chat tab .......................................................-->
-			<div v-if="!isRandom" class="test2 container" style="border:5px solid #cecece">		
-	
+	<div class="test2 container" style="border:5px solid #cecece">
+			<div v-if="!isRandom">		
+				<div class="test2 container half">
 				<!-- code used to make a new chat room-->
 				<button v-on:click="if(newTitle == '' || newTitle == null){
 							alert('your Title cannot be empty. Please try again');
@@ -200,15 +167,17 @@
 						<br>
 					</div>
 				</div>
-				
+				</div>
 		
 				<!--........... Code to display a chat box when user joins a chat ..........-->
-				<div class="test container half" style="border:5px solid #cecece" v-if="currentChat != null">
+				<div class="test2 container half" style="border:5px solid #cecece" v-if="currentChat != null">
 					${currentChat.Title}
 		
 					<!-- displaying the message for the chat box -->
 					<div v-for="line in (currentChat.chat.length)">
-						<b>${currentChat.chatter[line-1]}</b>: ${currentChat.chat[line-1]}
+						<div class="chat1 container darker">
+							<p><b>${currentChat.chatter[line-1]}</b>: ${currentChat.chat[line-1]}</p>
+						</div>
 					</div>
 		
 					<!-- the sending part of the chat box -->
@@ -218,6 +187,7 @@
 		
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 	<script src="{{=URL('static','js/jquery.js')}}"></script>
