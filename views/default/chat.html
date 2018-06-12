@@ -124,10 +124,13 @@
 			</div>
 	
 	<!--................................................... Code to Display group chat tab .......................................................-->
-	<div class="container" style="border:5px solid #cecece">
+	<div class="container">
 			<div v-if="!isRandom">		
 				<div class="quarter left">
 				<!-- code used to make a new chat room-->
+				<div class="chat_title">
+					Create a Room:
+				</div>
 				<button v-on:click="if(newTitle == '' || newTitle == null){
 							alert('your Title cannot be empty. Please try again');
 						    }
@@ -140,8 +143,9 @@
 	
 	
 				<br><br>
-				Chats Active
-				<br><br>
+				<div class="chat_title">
+					Chats Active
+				</div>
 	
 				<!-- code for serach bar for chat Titles -->
 				<textarea type="text" placeholder="Search for Chat" v-model="searching"></textarea>
@@ -170,9 +174,10 @@
 				</div>
 		
 				<!--........... Code to display a chat box when user joins a chat ..........-->
-				<div class="threequarters right" style="border:5px solid #cecece" v-if="currentChat != null">
-					${currentChat.Title}
-		
+				<div class="chat1 threequarters right" style="border:5px solid #cecece" v-if="currentChat != null">
+					<div class="chat_title">
+						Now Chatting In: ${currentChat.Title}
+					</div>
 					<!-- displaying the message for the chat box -->
 					<div v-for="line in (currentChat.chat.length)">
 						<div class="chat1 container darker">
@@ -183,7 +188,7 @@
 					<!-- the sending part of the chat box -->
 					<button v-on:click="editChat(currentChat.id);"> Send </button>
 		
-					<textarea type="text" placeholder="Send" v-model="newChatting"></textarea>
+					<textarea type="text" placeholder="Message..." v-model="newChatting"></textarea>
 		
 				</div>
 			</div>
