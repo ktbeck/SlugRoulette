@@ -182,15 +182,14 @@
 					</div>
 					<!-- displaying the message for the chat box -->
 					<div v-for="line in (currentChat.chat.length)">
-						<div class="chat1 container darker">
+						<div class="chat2 container darker">
 							<p><b>${currentChat.chatter[line-1]}</b>: ${currentChat.chat[line-1]}</p>
 						</div>
 					</div>
 		
 					<!-- the sending part of the chat box -->
 					<button v-on:click="editChat(currentChat.id);"> Send </button>
-		
-					<textarea type="text" placeholder="Send" v-model="newChatting"></textarea>
+					<textarea class="chat_input" type="text" placeholder="Send" v-model="newChatting"></textarea>
 		
 				</div>
 			</div>

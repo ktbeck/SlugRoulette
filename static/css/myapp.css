@@ -62,11 +62,24 @@ div.chat1 {
     padding: 10px;
     margin: 10px 0;
     border-color: #ccc;
-    background-color: #ddd;
+    background-color: #4c4c4c;
 }
+
+div.chat2 {
+    border: 5px solid #000000;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #6c6c6c;
+}
+
 
 div.chat_title {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande";
   font-size: 150%;
   font-weight: bold;
+}
+
+.chat_input {
+  background-color: #9b9b9b;
 }
