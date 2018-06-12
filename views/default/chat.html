@@ -13,8 +13,8 @@
 
   	//api functions for queue
 	var insert_queue      = "{{=URL('api', 'insert_queue',      user_signature=True)}}";
-	var get_list_of_queue = "{{=URL('api', 'get_list_of_queue', user_signature=True)}}";
-	var remove_queue      = "{{=URL('api', 'remove_queue',      user_signature=True)}}";
+	var get_list_of_queues= "{{=URL('api', 'get_list_of_queuess', user_signature=True)}}";
+	var remove_queues      = "{{=URL('api', 'remove_queues',      user_signature=True)}}";
 
 	var match_users       = "{{=URL('api', 'match_users',       user_signature=True)}}";
 	var countdown         = "{{=URL('api', 'countdown',         user_signature=True)}}";
@@ -58,17 +58,14 @@
 			<button v-on:click="if(!isRandom){
 				  	    	insertQueue();
 					    }
-					    isRandom = true;
-					    currentChat = null;"> Random Chat  </button>
+					    isRandom = true;"> Random Chat  </button>
 	
 			<button v-on:click="if(isRandom){
 					    	removeQueue();
 					    }
 					    getTitle();
 					    isRandom =    false;
-					    listChats =   [];
-					    currentChat = null;
-					    isServer    = false;"> Chat Servers </button>
+					    listChats =   [];"> Chat Servers </button>
 	
 	<!--................................................... Code to Display Random chat ..........................................................-->
 			
@@ -81,7 +78,7 @@
 				</div>
 	
 				<!-- displays chat for every user you have talked to in one session -->
-				<div v-if="currentChat!=null">
+				<div v-if="rcurrentChat!=null">
 					
 					<div v-if="isChatting">
 						You have ${time} seconds left
@@ -96,7 +93,7 @@
 						</div>
 					</div>
 				
-					<button v-if="isChatting" v-on:click="editChat(serverId);
+					<button v-if="isChatting" v-on:click="editChat(rserverId);
 							    		      editChat(randomBox);">Send</button>
 					<textarea type="text" v-if="isChatting" placeholder="send" v-model="newChatting"></textarea>
 				</div>
@@ -107,54 +104,52 @@
 			</div>
 	
 	<!--................................................... Code to Display group chat tab .......................................................-->
-			<div v-if="!isRandom">
-				<div v-if="currentChat == null || currentChat == [] || !isServer">
+			<div v-if="!isRandom">		
 	
-					<!-- code used to make a new chat room-->
-					<button v-on:click="if(newTitle == '' || newTitle == null){
-								alert('your Title cannot be empty. Please try again');
-							    }
-							    else{
-							    	makeNewChat(true);
-							    }
-							    refresh();">  Add </button>
-					<textarea type="text" placeholder="Title" v-model="newTitle"></textarea>
-	
+				<!-- code used to make a new chat room-->
+				<button v-on:click="if(newTitle == '' || newTitle == null){
+							alert('your Title cannot be empty. Please try again');
+						    }
+						    else{
+						    	makeNewChat(true);
+						    }
+						    refresh();">  Add </button>
+				<textarea type="text" placeholder="Title" v-model="newTitle"></textarea>
 	
 	
-					<br><br>
-					Chats Active
-					<br><br>
 	
-					<!-- code for serach bar for chat Titles -->
-					<textarea type="text" placeholder="Search for Chat" v-model="searching"></textarea>
-				
-					<!-- code to display a list of chat Titles -->
-					<div v-for="chat in chats">
+				<br><br>
+				Chats Active
+				<br><br>
 	
-						<!-- if statement checks if the chat is being searched for -->
-						<div v-if="searching == null       ||
-							   searching == ''         ||
-							   chat.Title == searching ||
-							  (chat.Title.length > searching.length && 
-							   chat.Title.substring(0,searching.length) == searching)">
+				<!-- code for serach bar for chat Titles -->
+				<textarea type="text" placeholder="Search for Chat" v-model="searching"></textarea>
+			
+				<!-- code to display a list of chat Titles -->
+				<div v-for="chat in chats">
 	
-							<!-- if this button is clicked, then user is redirected to the chat -->
-							<button v-on:click="serverId = chat.id;
-									    getChat();
-									    isServer = true;
-									    searching = null;">Join</button>
-							<button v-on:click="delChat(chat.id);">Delete</button>
+					<!-- if statement checks if the chat is being searched for -->
+					<div v-if="searching == null       ||
+						   searching == ''         ||
+						   chat.Title == searching ||
+						  (chat.Title.length > searching.length && 
+						   chat.Title.substring(0,searching.length) == searching)">
+	
+						<!-- if this button is clicked, then user is redirected to the chat -->
+						<button v-on:click="serverId = chat.id;
+								    getChat();
+								    isServer = true;
+								    searching = null;">Join</button>
 		
 		
-							<b>${chat.Title}</b> 
-							<br>
-						</div>
+						<b>${chat.Title}</b> 
+						<br>
 					</div>
 				</div>
+				
 		
 				<!--........... Code to display a chat box when user joins a chat ..........-->
-				<div v-if="currentChat != null && isServer">
+				<div v-if="currentChat != null">
 					${currentChat.Title}
 		
 					<!-- displaying the message for the chat box -->
@@ -164,10 +159,6 @@
 		
 					<!-- the sending part of the chat box -->
 					<button v-on:click="editChat(currentChat.id);"> Send </button>
-					<button v-on:click="getTitle();
-							    isServer    = false;
-							    currentChat = null;
-							    serverId    = null;"> Exit </button>
 		
 					<textarea type="text" placeholder="Send" v-model="newChatting"></textarea>
 		

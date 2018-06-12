@@ -19,8 +19,9 @@ db.define_table('textBox',
         Field('chat',             'list:string',  default=[]),
         Field('chatter',          'list:string',  default=[]),
         Field('chat_time',        'list:string',  default=[]),
-        Field('list_of_chatters', 'list:integer', default=[]),
+        Field('list_of_chatters', 'list:string',  default=[]),
         Field('password',         'string')
+
         )
 
 db.define_table('queue',

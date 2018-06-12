@@ -13,8 +13,8 @@
 
   	//api functions for queue
 	var insert_queue      = "{{=URL('api', 'insert_queue',      user_signature=True)}}";
-	var get_list_of_queue = "{{=URL('api', 'get_list_of_queue', user_signature=True)}}";
-	var remove_queue      = "{{=URL('api', 'remove_queue',      user_signature=True)}}";
+	var get_list_of_queues= "{{=URL('api', 'get_list_of_queuess', user_signature=True)}}";
+	var remove_queues     = "{{=URL('api', 'remove_queues',      user_signature=True)}}";
 
 	var match_users       = "{{=URL('api', 'match_users',       user_signature=True)}}";
 	var countdown         = "{{=URL('api', 'countdown',         user_signature=True)}}";
@@ -32,9 +32,6 @@
 
 <!--... makes sure that if user closes tab, they are removed from queue.
 	DOES NOT WORK ON FIREFOX IF USER CLOSES WINDOW -->
-<!--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
-<body onbeforeunload="console.log('a');
-	$.post(remove_queue);">-->
 <body>
 	<!-- Heading bar to log in/chat with people-->
 	<header>

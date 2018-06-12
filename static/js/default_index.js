@@ -41,9 +41,9 @@ var app = function() {
 				self.vue.chats = data.chats;
 
 				setTimeout(function(){
-					if(self.vue.isServer == false && self.vue.isRandom == false)
+					if(self.vue.isRandom == false)
 						self.getTitle();
-				}, self.vue.delay);
+				}, self.vue.normalDelay);
 			});
 	};
 
@@ -55,8 +55,17 @@ var app = function() {
 		temp = -1;
 		if(self.vue.currenChat != null)
 			temp = self.vue.currentChat.chat.length;
-		
-		$.getJSON(get_box, {
+
+		if(self.vue.isRandom){
+			$.getJSON(get_box,{
+				ID: self.vue.rserverId,
+				current: temp
+			}, function(data){
+				self.vue.rcurrentChat = data;
+			});
+		}
+		else{
+			$.getJSON(get_box, {
 		
 				ID:      self.vue.serverId,
 				current: temp
@@ -64,15 +73,18 @@ var app = function() {
 			}, function(data){
 			
 				console.log(data);
-				if(data != 0)
-					self.vue.currentChat = data;
+				if(data != 0){
+						self.vue.currentChat = data;
+
+				}	
 
 				setTimeout(function(){
 					if(self.vue.isServer == true && self.vue.isRandom == false)
 						self.getChat();
-				}, self.vue.delay);
+				}, self.vue.chatDelay);
 
 			});
+		}
 	};
 
 	self.editChat = function(chat_id){
@@ -117,7 +129,7 @@ var app = function() {
 
 	//Gets information from database about queue
 	self.listOfQueue = function (){
-		$.getJSON(get_list_of_queue, {
+		$.getJSON(get_list_of_queues, {
 					
 				isChatting: self.vue.isChatting
 	
@@ -180,10 +192,10 @@ var app = function() {
 					
 				
 					//if user has started new chat, then we add new chat to listChat array
-					if(self.vue.serverId != data[0].chats[length]){
+					if(self.vue.rserverId != data[0].chats[length]){
 
 						//getting id of your chat box
-						self.vue.serverId  = data[0].chats[length];
+						self.vue.rserverId  = data[0].chats[length];
 
 						//making space in array for random chat box
 						self.vue.listChats.push(null);
@@ -193,9 +205,9 @@ var app = function() {
 					}
 
 					//if chat is not new, then update latest that
-					else if(self.vue.isRandom && data[0].chats[length] == self.vue.serverId){
+					else if(self.vue.isRandom && data[0].chats[length] == self.vue.rserverId){
 						self.getChat();
-						self.vue.listChats[length] = self.vue.currentChat;
+						self.vue.listChats[length] = self.vue.rcurrentChat;
 					}
 	
 					//keeps track of whether a user has left and time limit
@@ -209,10 +221,10 @@ var app = function() {
 				setTimeout(function(){
 					self.listOfQueue();
 					//console.log(data);
-				}, self.vue.delay);
+				}, self.vue.chatDelay);
 			}
 			else{
-				self.vue.currentChat = null;
+				self.vue.rcurrentChat = null;
 			}
 
 		});
@@ -221,7 +233,7 @@ var app = function() {
 	}
 
 	self.removeQueue = function (){
-		$.post(remove_queue, {}, function(){});
+		$.post(remove_queues, {}, function(data){});
 	}
 	
 	//username functions	
@@ -271,14 +283,17 @@ var app = function() {
 			//These arrays are used to store retrived data from database
 			chats: [],
 			listChats: [],
-			currentChat: null,
+
+			rcurrentChat: null,
+			currentChat:  null,
 
 			newTitle: null,       //variable to temp store a new title
 			newChatting: null,    //variable to temp store new text
 
 			//variables to check if user has joined chat server
-			isServer: false,
-			serverId: null,
+			isServer:  false,
+			serverId:  null,
+			rserverId: null,
 
 			searching: "", //variable user to store search string
 
@@ -294,7 +309,8 @@ var app = function() {
 			time:      0,
 
 			//the intertval btwn pinging servers in milliseconds
-			delay: 500,
+			chatDelay:   100,
+			normalDelay: 500,
 
 			searchingForChat: "",
 			

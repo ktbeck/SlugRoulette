@@ -1,10 +1,5 @@
 # Here go your api methods.
 
-def add_textBox():
-    p = db.textBox.insert(
-        Title=request.vars.Title,
-        is_group_chat=request.vars.is_group_chat
-    )# Here go your api methods.
 import time
 
 def add_textBox():
@@ -91,7 +86,7 @@ def insert_queue():
     return "ok"
 
 
-def get_list_of_queue():
+def get_list_of_queuess():
     queue = []
 
     #gets logged in users data
@@ -110,7 +105,6 @@ def get_list_of_queue():
 
                     )   
                 queue.append(temp)
-
     return response.json(queue)
 
 
@@ -165,17 +159,17 @@ def countdown():
     return "ok"
 
 
-def remove_queue():
+def remove_queues():
 
+    test = []
     #deletes all textBox in this array so that we dont have memory leaks
     user = db(db.queue.person_id == auth.user.id).select().first()
     if user is not None:
         for r in user.chats:
-            db(db.textBox.id == r.id).delete();
-        
+            db(db.textBox.id == r.id).delete()
 
     db(db.queue.person_id == auth.user.id).delete()
-    return "ok"
+    return test
 	
 	
 #username functions
@@ -185,7 +179,8 @@ def duplicate():
     if check is None:
         # response.flash = T("Username already taken")
         return 0
-    return 1	
+    return 1
+
 def put_username():
     p = db.otherUserInfo.insert(username = request.vars.username)
     return "ok"
