@@ -1,4 +1,6 @@
 # SlugRoulette
+Slug Roulette is a chatting website built using web2py, vuejs, stupid.css, and bootstrap. It has random matching chat for users as well as chat rooms that anyone can join. The main purpose of the website was to better familiarize ourselves with web2py and vue, but also to show what we have learned since the beginning of the quarter.
+
 
 (Version 1.0)
 Add button creates a new chat and anyone including people that are logged off can chat. The chat is a type in the tables.py called textBox and my current idea for storing the text is using an array. The 'chat' Field is an Array and any new line that someone sends into the chat will be stored as an new index in the array. The Chat as of now CANNOT update its text UNLESS the send button is clicked OR the page is refreshed.
@@ -43,16 +45,3 @@ Chat UI is mostly complete/Main page is completely done.
 (version 2.6)
 Minor fixes to UI/margins/buttons etc.
 
-PROBLEM: Windows Explorer cannot run website. Double check to see if this happens elsewhere.
-
-(SOLVED)Queue will not remove user if user has logged off or exited page.
-(SOLVED) id of textBox is always null. As a result, I can only edit one textBox right now.
-(SOLVED) Currently, the array 'chat' CANNOT be displayed. As a result, I cannot work on the edit chat too. Someone fix please.
-
-POTENTIAL UPGRADES:
-
---------------------------------------------------- JOBS -------------------------------------------------------------------------------- Frank: UI looks like complete shit right now. You will need to change myapp.css, layout.html, and index.html to improve upon the website design. I want the page to just be a list of chats titles with buttons that you can click to join them. When you click, that chat box appears and the list of titles disappear. From there you can participate in chat or leave by pressing a button.
-
-Shreya: I have used a timeOut function so that the website will get a new version of the chatbox every so often. Try to find a better way to implement this. Also, you will have to give user the option to add a password when they make a chat server. THIS PASSWORD CANNOT BE NORMALLY STORED IN A STRING OR ELSE IT CAN BE EASILY STEALED. After all this, help Kyler with his task.
-
-Kyler: Look into the scroll wheel for the chatbox. Also look into how we are going to upload images. In charge of FriendsList.
