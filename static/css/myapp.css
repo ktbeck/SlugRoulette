@@ -76,6 +76,11 @@ div.chat2 {
     background-color: #6c6c6c;
 }
 
+div.chat_rooms {
+  overflow: auto;
+  max-height: 200px;
+  max-width: 400px;
+}
 
 div.chat_title {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande";

@@ -156,26 +156,28 @@
 				<textarea type="text" placeholder="Search for Chat" v-model="searching"></textarea>
 			
 				<!-- code to display a list of chat Titles -->
-				<div v-for="chat in chats">
+				<div class="chat_rooms">
+					<div v-for="chat in chats">
 	
-					<!-- if statement checks if the chat is being searched for -->
-					<div v-if="searching == null       ||
-						   searching == ''         ||
-						   chat.Title == searching ||
-						  (chat.Title.length > searching.length && 
-						   chat.Title.substring(0,searching.length) == searching)">
+						<!-- if statement checks if the chat is being searched for -->
+						<div v-if="searching == null       ||
+						  	 searching == ''         ||
+						  	 chat.Title == searching ||
+						  	(chat.Title.length > searching.length && 
+						  	 chat.Title.substring(0,searching.length) == searching)">
 	
-						<!-- if this button is clicked, then user is redirected to the chat -->
-						<button v-on:click="serverId = chat.id;
-								    getChat();
-								    isServer = true;
-								    searching = null;">Join</button>
+							<!-- if this button is clicked, then user is redirected to the chat -->
+							<button v-on:click="serverId = chat.id;
+								    	getChat();
+								    	isServer = true;
+								    	searching = null;">Join</button>
 		
 		
-						<b>${chat.Title}</b> 
-						<br>
+							<b>${chat.Title}</b> 
+							<br>
+						</div>
 					</div>
-				</div>
+					</div>
 				</div>
 		
 				<!--........... Code to display a chat box when user joins a chat ..........-->
