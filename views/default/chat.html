@@ -145,7 +145,7 @@
 							    else{
 							    	makeNewChat(true);
 							    }
-							    refresh();" style="margin-left: 5px">  Add </button>
+							    refresh();" style="margin-left: 5px; background-color: #D0C531">  Add </button>
 					<input type="text" placeholder="Title" v-model="newTitle"></input>
 		
 		
@@ -173,7 +173,7 @@
 								<button v-on:click="serverId = chat.id;
 									    	getChat();
 									    	isServer = true;
-									    	searching = null;">Join</button>
+									    	searching = null;" style="background-color: #7D5AAB">Join</button>
 			
 			
 								<b>${chat.Title}</b> 
@@ -203,7 +203,8 @@
 						</div>
 
 						<!-- the sending part of the chat box -->
-						<button v-if="newChatting != null || newChatting != ''" v-on:click="editChat(currentChat.id);" style="margin-top: 10px"> Send </button>
+						<button v-if="newChatting != null || newChatting != ''" v-on:click="editChat(currentChat.id);" style="margin-top: 10px; background-color: #403C7F"> 
+							Send</button>
 						<textarea class="chat_input" style="resize: none" type="text" placeholder="Send" v-model="newChatting"></textarea>
 			
 					</div>
