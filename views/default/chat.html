@@ -121,7 +121,7 @@
 					</div>
 					</div>
 				
-					<button v-if="isChatting" v-on:click="editChat(rserverId);
+					<button v-if="isChatting && (newChatting != null || newChatting != ''" v-on:click="editChat(rserverId);
 							    		      editChat(randomBox);">Send</button>
 					<textarea type="text" v-if="isChatting" placeholder="send" v-model="newChatting"></textarea>
 				</div>
@@ -203,8 +203,8 @@
 						</div>
 
 						<!-- the sending part of the chat box -->
-						<button v-on:click="editChat(currentChat.id);" style="margin-top: 10px"> Send </button>
-						<textarea class="chat_input" style="resize: none;" type="text" placeholder="Send" v-model="newChatting"></textarea>
+						<button v-if="newChatting != null || newChatting != ''" v-on:click="editChat(currentChat.id);" style="margin-top: 10px"> Send </button>
+						<textarea class="chat_input" style="resize: none" type="text" placeholder="Send" v-model="newChatting"></textarea>
 			
 					</div>
 				</div>
