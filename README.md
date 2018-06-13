@@ -1,6 +1,4 @@
- # SlugRoulette
-SlugRoulette is a website where we get to meet with random people. It's similar to chat roulette, where users are matched with random people but in SlugRoulette we want users to continue chatting with each other.
-The website opens up with a menu asking users to either log in, sign up or join a random chat(anonymously). After the user logs in they are taken to the random chat user where they are given an option to request the user as a friend, or move onto a new chat with a different person. The user also has an option to have a private chat with their friends.
+# SlugRoulette
 
 (Version 1.0)
 Add button creates a new chat and anyone including people that are logged off can chat. The chat is a type in the tables.py called textBox and my current idea for storing the text is using an array. The 'chat' Field is an Array and any new line that someone sends into the chat will be stored as an new index in the array. The Chat as of now CANNOT update its text UNLESS the send button is clicked OR the page is refreshed.
