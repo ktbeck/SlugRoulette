@@ -8,6 +8,7 @@
 # Consult manual for more options, validators, etc.
 
 import datetime
+import time
 
 def get_user_email():
     return auth.user.email if auth.user is not None else None
@@ -28,8 +29,11 @@ db.define_table('queue',
         Field('person_id',   'integer'),
         Field('chats',       'list:reference textBox', default=[]),
         Field('is_chatting', 'boolean',                default=False),
+
+        Field('respond',     'float',                  default=time.time()),
         Field('time_limit',  'float',                  default=0),
         Field('time_remain', 'float',                  default=0),
+
         Field('chatting_with'),
         )
 db.define_table('otherUserInfo',

@@ -89,23 +89,30 @@ def insert_queue():
 
 def get_list_of_queuess():
     queue = []
+    a = db(db.queue.person_id == auth.user.id).select().first()
+    queue.append(a)
+    a.update_record(respond = time.time())
 
-    #gets logged in users data
-    queue.append(db(db.queue.person_id == auth.user.id).select().first())
-    #queue.append(request.vars.isChatting)
-    #queue.append(False)
+    for r in db().select(db.queue.ALL):
+        if (time.time() - r.respond) > 5:
+            for rr in r.chats:
+                db(db.textBox.id == rr.id).delete()
+            db(db.queue.id == r.id).delete()
+        
 
     #gets the data of every other user that isnt chatting with another random person
     if request.vars.isChatting == 'false':
         for r in db().select(db.queue.ALL):
-            if r.person_id != auth.user.id and r.is_chatting == False:
-                temp = dict(
+            if r.person_id != auth.user.id:
+                if r.is_chatting is False:
+                    temp = dict(
 
-                        person_id   = r.person_id,
-                        is_chatting = r.is_chatting,
+                            person_id   = r.person_id,
+                            is_chatting = r.is_chatting,
 
-                    )   
-                queue.append(temp)
+                        )   
+                    queue.append(temp)
+
     return response.json(queue)
 
 
@@ -192,68 +199,4 @@ def grab_username():
 		return response.json(t)
 	return "ok"
 
-
-def get_textBox():
-    t = db(db.textBox.id == request.vars.ID).select().first()
-    temp = dict(
-        Title=t.Title,
-        chat=t.chat,
-        chatter=t.chatter,
-        id=t.id
-    )
-
-    return response.json(temp)
-
-def get_textTitle():
-    chats = []
-    for r in db().select(db.textBox.ALL):
-        if r.is_group_chat == True:
-            t = dict(
-                Title=r.Title,
-                id=r.id
-            )
-            chats.append(t)
-    return response.json(dict(chats=chats))
-
-
-def edit_textBox():
-    chat = db(db.textBox.id == request.vars.chat_id).select().first()
-
-    # updating the text in the box
-    temp = chat.chat
-    temp.append(request.vars.NEW)
-
-    # updating the names that sent the text
-    temp2 = chat.chatter
-    if auth.user is None:
-        temp2.append("Anonymous")
-
-    else:
-        temp2.append(auth.user.first_name)
-
-    chat.update_record(chat=temp, chatter=temp2)
-    return "ok"
-
-
-def del_textBox():
-    db(db.textBox.id == request.vars.chat_id).delete()
-    return "ok"
-
-def duplicate():
-    check = db(db.otherUserInfo.username == request.vars.username).select().first()
-    print(check)
-    if check is None:
-        # response.flash = T("Username already taken")
-        return 0
-    return 1
-
-
-def put_username():
-    p = db.otherUserInfo.insert(username = request.vars.username)
-    return "ok"
-
-def get_username():
-    t = db(db.otherUserInfo.user_id == auth.user.id).select().first()
-    return response.json(t)
-
-
+#####################################################################################################

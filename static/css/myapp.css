@@ -63,9 +63,6 @@ div.chat1 {
     margin: 10px 0;
     border-color: #ccc;
     background-color: #4c4c4c;
-    overflow: auto;
-    max-height: 450px;
-    max-width: 900px;
 }
 
 div.chat2 {
@@ -76,11 +73,6 @@ div.chat2 {
     background-color: #6c6c6c;
 }
 
-div.chat_rooms {
-  overflow: auto;
-  max-height: 200px;
-  max-width: 400px;
-}
 
 div.chat_title {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande";
