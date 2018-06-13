@@ -196,9 +196,9 @@ def store_username():
     return "ok"
 
 def grab_username():
-	if auth.user != None:
-		t = db(db.otherUserInfo.user_id == auth.user.id).select().first()
-		return response.json(t)
-	return "ok"
+    if auth.user != None:
+        t = db(db.otherUserInfo.user_id == auth.user.id).select().first()
+        return response.json(t)
+    return "ok"
 
 #####################################################################################################
