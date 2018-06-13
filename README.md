@@ -37,6 +37,9 @@ Chat has been migrated to another page.
 (version 2.4)
 Queue now correctly updates on all browsers.
 
+(version 2.5)
+Chat UI is mostly complete/Main page is completely done.
+
 PROBLEM: Windows Explorer cannot run website. Double check to see if this happens elsewhere.
 
 (SOLVED)Queue will not remove user if user has logged off or exited page.
