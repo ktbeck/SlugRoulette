@@ -16,13 +16,11 @@ def get_user_email():
 db.define_table('textBox',
         Field('Title', default='template'),
         Field('is_group_chat', 'boolean'),
-
         Field('chat',             'list:string',  default=[]),
         Field('chatter',          'list:string',  default=[]),
         Field('chat_time',        'list:string',  default=[]),
         Field('list_of_chatters', 'list:string',  default=[]),
         Field('password',         'string'),
-
         )
 
 db.define_table('queue',
