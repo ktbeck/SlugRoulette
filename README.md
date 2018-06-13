@@ -34,7 +34,7 @@ Readded README. Queue works, usernames work, and chat works. UI not totally conn
 Uploaded main UI for main page. Content is mostly complete aside from some images needed and minor adjustments to bottom elements.
 Chat has been migrated to another page.
 
-(version 2.4)                                                                                                                           
+(version 2.4)
 Queue now correctly updates on all browsers.
 
 PROBLEM: Windows Explorer cannot run website. Double check to see if this happens elsewhere.
