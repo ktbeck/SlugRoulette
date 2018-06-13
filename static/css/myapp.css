@@ -60,11 +60,11 @@ div.chat1 {
     border: 5px solid #dedede;
     border-radius: 5px;
     padding: 10px;
-    margin: 10px 0;
+    /*margin: 10px 0;*/
     border-color: #ccc;
     background-color: #4c4c4c;
     overflow: auto;
-    max-height: 450px;
+    max-height: 400px;
     max-width: 900px;
 }
 
