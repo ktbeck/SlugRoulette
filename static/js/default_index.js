@@ -252,6 +252,7 @@ var app = function() {
                             username: self.vue.username
                         }, function (data) {
                             self.get_username();
+                            self.vue.show_username_box = false;
                         });
                 }
                 else {
@@ -265,10 +266,12 @@ var app = function() {
 		$.get(getUsername, {}, function(data){
 				if(data == null){
 					self.vue.needs_username =  true;
+					self.vue.show_username_box = true;
 				}
 				else{
 					// console.log(data);
 					self.vue.needs_username = false;
+					self.vue.show_username_box = false;
 				}
 			});
 	};
@@ -345,6 +348,7 @@ var app = function() {
 			needs_username: false,
 			requested: false,
 			acc_or_rej: false,
+			show_username_box: null
 
         	},
         	methods: {
