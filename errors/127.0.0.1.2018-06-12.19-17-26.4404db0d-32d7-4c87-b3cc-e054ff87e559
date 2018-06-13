@@ -1,0 +1,230 @@
+(dp1
+S'output'
+p2
+S'Unable to find the file'
+p3
+sS'layer'
+p4
+S'default/chat.html'
+p5
+sS'code'
+p6
+S''
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__getslice__'
+p11
+S"<method-wrapper '__getslice__' of exceptions.IOError object>"
+p12
+sS'__str__'
+p13
+S"<method-wrapper '__str__' of exceptions.IOError object>"
+p14
+sS'__reduce__'
+p15
+S'<built-in method __reduce__ of exceptions.IOError object>'
+p16
+sS'__dict__'
+p17
+S'{}'
+p18
+sS'__sizeof__'
+p19
+S'<built-in method __sizeof__ of exceptions.IOError object>'
+p20
+sS'message'
+p21
+S"''"
+p22
+sS'__init__'
+p23
+S"<method-wrapper '__init__' of exceptions.IOError object>"
+p24
+sS'__setattr__'
+p25
+S"<method-wrapper '__setattr__' of exceptions.IOError object>"
+p26
+sS'__reduce_ex__'
+p27
+S'<built-in method __reduce_ex__ of exceptions.IOError object>'
+p28
+sS'__new__'
+p29
+S'<built-in method __new__ of type object>'
+p30
+sS'errno'
+p31
+S'13'
+p32
+sS'__format__'
+p33
+S'<built-in method __format__ of exceptions.IOError object>'
+p34
+sS'__class__'
+p35
+S"<type 'exceptions.IOError'>"
+p36
+sS'filename'
+p37
+S"r'C:\\Users\\Kyler Beck\\Documents\\CS183\\web2py_win\\w...applications\\SlugRoulette\\views\\default/chat.html'"
+p38
+sS'__doc__'
+p39
+S"'I/O operation failed.'"
+p40
+sS'__getitem__'
+p41
+S"<method-wrapper '__getitem__' of exceptions.IOError object>"
+p42
+sS'__setstate__'
+p43
+S'<built-in method __setstate__ of exceptions.IOError object>'
+p44
+sS'__getattribute__'
+p45
+S"<method-wrapper '__getattribute__' of exceptions.IOError object>"
+p46
+sS'args'
+p47
+S"(13, 'Permission denied')"
+p48
+sS'__subclasshook__'
+p49
+S'<built-in method __subclasshook__ of type object>'
+p50
+sS'__unicode__'
+p51
+S'<built-in method __unicode__ of exceptions.IOError object>'
+p52
+sS'strerror'
+p53
+S"'Permission denied'"
+p54
+sS'__delattr__'
+p55
+S"<method-wrapper '__delattr__' of exceptions.IOError object>"
+p56
+sS'__repr__'
+p57
+S"<method-wrapper '__repr__' of exceptions.IOError object>"
+p58
+sS'__hash__'
+p59
+S"<method-wrapper '__hash__' of exceptions.IOError object>"
+p60
+ssS'evalue'
+p61
+S"[Errno 13] Permission denied: 'C:\\\\Users\\\\Kyler Beck\\\\Documents\\\\CS183\\\\web2py_win\\\\web2py\\\\applications\\\\SlugRoulette\\\\views\\\\default/chat.html'"
+p62
+sS'frames'
+p63
+(lp64
+(dp65
+S'file'
+p66
+S'C:\\Users\\Kyler Beck\\Documents\\CS183\\web2py_win\\web2py\\gluon\\template.py'
+p67
+sS'dump'
+p68
+(dp69
+S'fp'
+p70
+S'undefined'
+p71
+sS'builtinopen'
+p72
+S'<built-in function open>'
+p73
+sS'fname'
+p74
+S"r'C:\\Users\\Kyler Beck\\Documents\\CS183\\web2py_win\\w...applications\\SlugRoulette\\views\\default/chat.html'"
+p75
+ssS'lnum'
+p76
+I784
+sS'lines'
+p77
+(dp78
+I779
+S''
+sI780
+S'    # First, if we have a str try to open the file'
+p79
+sI781
+S'    if isinstance(filename, str):'
+p80
+sI782
+S'        fname = os.path.join(path, filename)'
+p81
+sI783
+S'        try:'
+p82
+sI784
+S"            with open(fname, 'rb') as fp:"
+p83
+sI785
+S'                text = fp.read()'
+p84
+sI786
+S'        except IOError:'
+p85
+sI787
+S"            raise RestrictedError(filename, '', 'Unable to find the file')"
+p86
+sI788
+S'    else:'
+p87
+ssS'call'
+p88
+S"(filename='default/chat.html', path=r'C:\\Users\\Kyler Beck\\Documents\\CS183\\web2py_win\\web2py\\applications\\SlugRoulette\\views', context={'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AppConfig': <function AppConfig>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, ...}, lexers={}, delimiters=('{{', '}}'))"
+p89
+sS'func'
+p90
+S'parse_template'
+p91
+sasS'pyver'
+p92
+S'Python 2.7.9: C:\\Users\\Kyler Beck\\Documents\\CS183\\web2py_win\\web2py\\web2py.exe (prefix: C:\\Python27)'
+p93
+sS'etype'
+p94
+S"<type 'exceptions.IOError'>"
+p95
+sS'date'
+p96
+S'Tue Jun 12 19:17:26 2018'
+p97
+sS'locals'
+p98
+(dp99
+S'fname'
+p100
+S"r'C:\\Users\\Kyler Beck\\Documents\\CS183\\web2py_win\\w...applications\\SlugRoulette\\views\\default/chat.html'"
+p101
+sS'delimiters'
+p102
+S"('{{', '}}')"
+p103
+sg37
+S"'default/chat.html'"
+p104
+sS'context'
+p105
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AppConfig': <function AppConfig>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, ...}"
+p106
+sS'path'
+p107
+S"r'C:\\Users\\Kyler Beck\\Documents\\CS183\\web2py_win\\web2py\\applications\\SlugRoulette\\views'"
+p108
+sS'lexers'
+p109
+g18
+sssS'traceback'
+p110
+S'Traceback (most recent call last):\n  File "C:\\Users\\Kyler Beck\\Documents\\CS183\\web2py_win\\web2py\\gluon\\template.py", line 784, in parse_template\n    with open(fname, \'rb\') as fp:\nIOError: [Errno 13] Permission denied: \'C:\\\\Users\\\\Kyler Beck\\\\Documents\\\\CS183\\\\web2py_win\\\\web2py\\\\applications\\\\SlugRoulette\\\\views\\\\default/chat.html\'\n'
+p111
+s.
