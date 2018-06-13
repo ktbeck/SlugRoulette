@@ -1,4 +1,4 @@
-timestamp: 2018-06-12T18:25:09.771000
+timestamp: 2018-06-12T19:13:58.607000
 CREATE TABLE "web2py_session_SlugRoulette"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "locked" CHAR(1),
@@ -9,7 +9,7 @@ CREATE TABLE "web2py_session_SlugRoulette"(
     "session_data" BLOB
 );
 success!
-timestamp: 2018-06-12T18:25:09.815000
+timestamp: 2018-06-12T19:13:58.690000
 CREATE TABLE "auth_user"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "first_name" CHAR(128),
@@ -21,21 +21,21 @@ CREATE TABLE "auth_user"(
     "registration_id" CHAR(512)
 );
 success!
-timestamp: 2018-06-12T18:25:09.855000
+timestamp: 2018-06-12T19:13:58.770000
 CREATE TABLE "auth_group"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "role" CHAR(512),
     "description" TEXT
 );
 success!
-timestamp: 2018-06-12T18:25:09.899000
+timestamp: 2018-06-12T19:13:58.839000
 CREATE TABLE "auth_membership"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
     "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  
 );
 success!
-timestamp: 2018-06-12T18:25:09.963000
+timestamp: 2018-06-12T19:13:58.878000
 CREATE TABLE "auth_permission"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  ,
@@ -44,7 +44,7 @@ CREATE TABLE "auth_permission"(
     "record_id" INTEGER
 );
 success!
-timestamp: 2018-06-12T18:25:10.027000
+timestamp: 2018-06-12T19:13:58.924000
 CREATE TABLE "auth_event"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "time_stamp" TIMESTAMP,
@@ -54,7 +54,7 @@ CREATE TABLE "auth_event"(
     "description" TEXT
 );
 success!
-timestamp: 2018-06-12T18:25:10.079000
+timestamp: 2018-06-12T19:13:58.991000
 CREATE TABLE "auth_cas"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
@@ -64,7 +64,7 @@ CREATE TABLE "auth_cas"(
     "renew" CHAR(1)
 );
 success!
-timestamp: 2018-06-12T18:25:10.127000
+timestamp: 2018-06-12T19:13:59.072000
 CREATE TABLE "textBox"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "Title" CHAR(512),
@@ -76,7 +76,7 @@ CREATE TABLE "textBox"(
     "password" CHAR(512)
 );
 success!
-timestamp: 2018-06-12T18:25:10.163000
+timestamp: 2018-06-12T19:13:59.116000
 CREATE TABLE "queue"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "person_id" INTEGER,
@@ -88,15 +88,11 @@ CREATE TABLE "queue"(
     "chatting_with" CHAR(512)
 );
 success!
-timestamp: 2018-06-12T18:25:10.199000
+timestamp: 2018-06-12T19:13:59.166000
 CREATE TABLE "otherUserInfo"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "user_id" INTEGER,
     "username" CHAR(512),
     "friendsList" TEXT
 );
-success!
-timestamp: 2018-06-12T18:39:18.316000
-ALTER TABLE "otherUserInfo" ADD "friends" TEXT;
-success!
 success!
