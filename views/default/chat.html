@@ -29,7 +29,7 @@
 	var check_repeats     = "{{=URL('api', 'check_username')}}";
 </script>
 {{end}}
-<body>
+<div class="page container" >
 	<header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">Slug Roulette</a>
@@ -145,8 +145,8 @@
 							    else{
 							    	makeNewChat(true);
 							    }
-							    refresh();">  Add </button>
-					<textarea type="text" placeholder="Title" v-model="newTitle"></textarea>
+							    refresh();" style="margin-left: 5px">  Add </button>
+					<input type="text" placeholder="Title" v-model="newTitle"></input>
 		
 		
 		
@@ -156,7 +156,7 @@
 					</div>
 		
 					<!-- code for serach bar for chat Titles -->
-					<textarea type="text" placeholder="Search for Chat" v-model="searching"></textarea>
+					<input type="text" placeholder="Search for Chat" v-model="searching"></input>
 				
 					<!-- code to display a list of chat Titles -->
 					<div class="chat_rooms">
@@ -186,7 +186,7 @@
 					<!--........... Code to display a chat box when user joins a chat ..........-->
 					<div class="threequarters right" style="background-color:#5c5c5c;
 										border:5px solid #000000;
-										max-height: 500px;" v-if="currentChat != null">
+										max-height: 550px;" v-if="currentChat != null">
 						<div class="chat1">
 							<div class="scrollbar scrollbar-primary">
 		   						<div class="force-overflow"></div>
@@ -203,8 +203,8 @@
 						</div>
 
 						<!-- the sending part of the chat box -->
-						<button v-on:click="editChat(currentChat.id);"> Send </button>
-						<textarea class="chat_input" style="resize: none" type="text" placeholder="Send" v-model="newChatting"></textarea>
+						<button v-on:click="editChat(currentChat.id);" style="margin-top: 10px"> Send </button>
+						<textarea class="chat_input" style="resize: none;" type="text" placeholder="Send" v-model="newChatting"></textarea>
 			
 					</div>
 				</div>
@@ -214,6 +214,6 @@
 	</div>
 	<script src="{{=URL('static','js/jquery.js')}}"></script>
     <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
-</body>
+</div>
 
 <script src="{{=URL('static', 'js/default_index.js')}}"></script>

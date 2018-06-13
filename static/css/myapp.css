@@ -91,7 +91,7 @@ div.random {
 
 div.chat_rooms {
   overflow: auto;
-  max-height: 200px;
+  max-height: 300px;
   max-width: 400px;
 }
 
