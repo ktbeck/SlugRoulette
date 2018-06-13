@@ -63,6 +63,9 @@ div.chat1 {
     margin: 10px 0;
     border-color: #ccc;
     background-color: #4c4c4c;
+    overflow: auto;
+    max-height: 450px;
+    max-width: 900px;
 }
 
 div.chat2 {

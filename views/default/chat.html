@@ -133,6 +133,9 @@
 			<div v-if="!isRandom">		
 				<div class="quarter left">
 				<!-- code used to make a new chat room-->
+				<div class="chat_title">
+					Create a Chat:
+				</div>
 				<button v-on:click="if(newTitle == '' || newTitle == null){
 							alert('your Title cannot be empty. Please try again');
 						    }
@@ -177,6 +180,9 @@
 		
 				<!--........... Code to display a chat box when user joins a chat ..........-->
 				<div class="chat1 threequarters right" style="border:5px solid #cecece" v-if="currentChat != null">
+					<div class="scrollbar scrollbar-primary">
+   						<div class="force-overflow"></div>
+					</div>
 					<div class="chat_title">
 						Now Chatting In: ${currentChat.Title}
 					</div>
