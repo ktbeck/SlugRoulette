@@ -118,23 +118,25 @@ def get_list_of_queuess():
 
 def match_users():
 
-    user1 =      db(db.queue.person_id == auth.user.id).select().first()
-    user2 =      db(db.queue.person_id == request.vars.person_id).select().first()
-    user2_info = db(db.auth_user.id    == request.vars.person_id).select().first()
+    user1 = db(db.queue.person_id == auth.user.id).select().first()
+    user2 = db(db.queue.person_id == request.vars.person_id).select().first()
+    username1 = db(db.otherUserInfo.user_id == auth.user.id).select().first()
+    username2 = db(db.otherUserInfo.user_id == request.vars.person_id).select().first()
+    user2_info = db(db.auth_user.id == request.vars.person_id).select().first()
 
     if user1 is not None and user2 is not None and user1.is_chatting == False and user2.is_chatting == False:
     
         #adding new textBox for first user
         temp = user1.chats
         p = db.textBox.insert(
-                    chat = ['You are now chatting with ' + user2_info.first_name]
+                    chat = ['You are now chatting with ' + username2.username]
                 )
         temp.append(p)
 
         #adding new textBox for second user
         temp2 = user2.chats
         p2 = db.textBox.insert(
-                    chat = ['you are now chatting with ' + auth.user.first_name]
+                    chat = ['you are now chatting with ' + username1.username]
                )
         temp2.append(p2)
 
@@ -199,4 +201,55 @@ def grab_username():
 		return response.json(t)
 	return "ok"
 
-#####################################################################################################
+
+def get_textBox():
+    t = db(db.textBox.id == request.vars.ID).select().first()
+    temp = dict(
+        Title=t.Title,
+        chat=t.chat,
+        chatter=t.chatter,
+        id=t.id
+    )
+
+    return response.json(temp)
+
+def get_textTitle():
+    chats = []
+    for r in db().select(db.textBox.ALL):
+        if r.is_group_chat == True:
+            t = dict(
+                Title=r.Title,
+                id=r.id
+            )
+            chats.append(t)
+    return response.json(dict(chats=chats))
+
+
+def edit_textBox():
+    chat = db(db.textBox.id == request.vars.chat_id).select().first()
+
+    # updating the text in the box
+    temp = chat.chat
+    temp.append(request.vars.NEW)
+
+    # updating the names that sent the text
+    temp2 = chat.chatter
+    if auth.user is None:
+        temp2.append("Anonymous")
+
+    else:
+        temp2.append(auth.user.first_name)
+
+    chat.update_record(chat=temp, chatter=temp2)
+    return "ok"
+
+
+def del_textBox():
+    db(db.textBox.id == request.vars.chat_id).delete()
+    return "ok"
+
+
+def show_friends():
+    r = db(db.otherUserInfo.user_id == auth.user.id).select().first()
+    return response.json(r.friends)
+
