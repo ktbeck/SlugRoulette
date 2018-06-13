@@ -77,6 +77,18 @@ div.chat2 {
     word-wrap: break-word;
 }
 
+div.random {
+    border: 5px solid #dedede;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    border-color: #ccc;
+    background-color: #5c5c5c;
+    overflow: auto;
+    max-height: 700px;
+    max-width: 900px;
+}
+
 div.chat_rooms {
   overflow: auto;
   max-height: 200px;

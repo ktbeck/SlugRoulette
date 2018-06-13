@@ -136,7 +136,7 @@ def match_users():
         #adding new textBox for second user
         temp2 = user2.chats
         p2 = db.textBox.insert(
-                    chat = ['you are now chatting with ' + username1.username]
+                    chat = ['You are now chatting with ' + username1.username]
                )
         temp2.append(p2)
 

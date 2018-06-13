@@ -105,18 +105,21 @@
 	
 				<!-- displays chat for every user you have talked to in one session -->
 				<div v-if="rcurrentChat!=null">
-					
+					<div class="random container">
 					<div v-if="isChatting">
 						You have ${time} seconds left
 					</div>
+					<div class="chat1 container">
 					<div v-for="chats in listChats" v-if="chats != null"> 
-						
 						<b> ${chats.chat[0]}</b> <br>
-						<div v-for="line in chats.chatter.length">
-							${chats.chatter[line-1]}: ${chats.chat[line]}
-								
-						
+	
+							<div v-for="line in chats.chatter.length">
+								<div class="chat2 container">
+								<b>${chats.chatter[line-1]}:</b> ${chats.chat[line]}
+								</div>
+							</div>
 						</div>
+					</div>
 					</div>
 				
 					<button v-if="isChatting" v-on:click="editChat(rserverId);
