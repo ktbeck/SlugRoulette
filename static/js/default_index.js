@@ -33,6 +33,7 @@ var app = function() {
 	};
    
 	self.getTitle = function(){
+		console.log(self.vue.logged_in);
 		//console.log("getting chats from database");
 		//console.log(self.vue.currentChat);
 
@@ -50,7 +51,7 @@ var app = function() {
 	self.getChat = function(){
 		//console.log("getting the chat box of chosen chat room");
 		//console.log(self.vue.currentChat);
-		
+		console.log('asdas');
 
 		temp = -1;
 		if(self.vue.currenChat != null)
@@ -306,7 +307,7 @@ var app = function() {
 			/*stores the id of your chat box and the chat box of the person you are chatting 
 			  to in the random chat*/
 			randomBox: null,
-			time:      0,
+			time: 0,
 
 			//the intertval btwn pinging servers in milliseconds
 			chatDelay:   100,
