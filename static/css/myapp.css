@@ -74,6 +74,8 @@ div.chat2 {
     padding: 10px;
     margin: 10px 0;
     background-color: #6c6c6c;
+    /*//overflow: auto;*/
+    word-wrap: break-word;
 }
 
 div.chat_rooms {
